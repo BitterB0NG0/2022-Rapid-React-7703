@@ -15,35 +15,32 @@ import edu.wpi.first.wpilibj.Joystick;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-<<<<<<< HEAD
 
-    public static final class PWMPorts{
-        public static final int motor1 = 0;
-        public static final int motor2 = 1;
-        public static final int motor3 = 2;
-        public static final int motor4 = 3;
-        public static final int motor5 = 4;
-        public static final int motor6 = 5;
-    }
+    // public static final class PWMPorts{
+    //     public static final int motor1 = 0;
+    //     public static final int motor2 = 1;
+    //     public static final int motor3 = 2;
+    //     public static final int motor4 = 3;
+    //     public static final int motor5 = 4;
+    //     public static final int motor6 = 5;
+    // }
 
-    public static final class Robot_Features{
-        public static final int wheel_Radius        = 3;
-        public static final int right_encoder_pulse = 120;
-        public static final int left_encoder_pulse  = 120;
-    }
+    // public static final class Robot_Features{
+    //     public static final int wheel_Radius        = 3;
+    //     public static final int right_encoder_pulse = 120;
+    //     public static final int left_encoder_pulse  = 120;
+    // }
 
-    public static final class Analog_Ports{
-        public static final int left_encoder_port_1  = 0;
-        public static final int left_encoder_port_2  = 1;
-        public static final int right_encoder_port_1 = 2;
-        public static final int right_encoder_port_2 = 3;
-        public static final int gyro_port            = 4;
-    }   
-=======
-    // Output-Input
-    public static Joystick stick = new Joystick(Constants.joystickPort); // "0" is the port
+    // public static final class Analog_Ports{
+    //     public static final int left_encoder_port_1  = 0;
+    //     public static final int left_encoder_port_2  = 1;
+    //     public static final int right_encoder_port_1 = 2;
+    //     public static final int right_encoder_port_2 = 3;
+    //     public static final int gyro_port            = 4;
+    // }   
+    // // Output-Input
+    // public static Joystick stick = new Joystick(Constants.joystickPort); // "0" is the port
    
-    // Ports and Robot Map
-    public static int joystickPort = 0;
->>>>>>> c4a43a108490a46d79cd779e74ae6bcbae04606b
+    // // Ports and Robot Map
+    // public static int joystickPort = 0;
 }
