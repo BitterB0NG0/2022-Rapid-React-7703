@@ -4,53 +4,38 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.BaseDriveSubsytem;
-import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 
-/**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and button mappings) should be declared here.
- */
+import frc.robot.subsystems.DriveBaseSubsystem;
+import frc.robot.commands.ArcadeDrive;
+
+/* This class is where the bulk of the robot should be declared. Since Command-based is a "declarative" 
+paradigm, very little robot logic should actually be handled in the {@link Robot} periodic methods 
+(other than the scheduler calls). Instead, the structure of the robot (including subsystems, commands, 
+and button mappings) should be declared here. */
+
 public class RobotContainer {
-  /** The robot's subsystems and commands are defined here...
-   * Establishing Instances of Subsystem, Command, & RobotContainer Classes */
+  // Declaring Output-Input
+  public static Joystick stick = new Joystick(Constants.joystickPort);
+  public static Joystick stick1 = new Joystick(Constants.joystick1Port);
+  public static Joystick stick2 = new Joystick(Constants.joystick2Port);
+  // Declaring Instances of Subsystem, Command, & RobotContainer Classes
+  public final DriveBaseSubsystem m_driveBaseSubsystem = new DriveBaseSubsystem();
+  private final ArcadeDrive m_arcadeDrive = new ArcadeDrive(m_driveBaseSubsystem);
 
-  public final DriveSubsystem m_driveBaseSubsystem = new BaseDriveSubsytem();
-  private final TankDrive m_drive = new TankDrive(m_drive)
-
-
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  // The Container for the Robot. Contains Subsystems, OI Devices, Commands, and Button Bindings.
   public RobotContainer() {
-    /** Configure the button bindings 
-     * 
-    */
+    //Calling "configureButtonBindings()" Methods
     configureButtonBindings();
   }
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
+  // Method for the Configuration of Button Bindings
   private void configureButtonBindings() {}
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
+  //Method to Pass the Autonomous Command to the "Main" Class
   public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return m_arcadeDrive; // "return m_arcadeDrive" is temporary, but something must be returned
   }
-}
   
+}

@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -14,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+
 public final class Constants {
 
     // public static final class PWMPorts{
@@ -38,9 +37,9 @@ public final class Constants {
     //     public static final int right_encoder_port_2 = 3;
     //     public static final int gyro_port            = 4;
     // }   
-    // // Output-Input
-    // public static Joystick stick = new Joystick(Constants.joystickPort); // "0" is the port
-   
-    // // Ports and Robot Map
-    // public static int joystickPort = 0;
+    
+    // Ports and Robot Map
+    public static int joystickPort = 0;
+    public static int joystick1Port = 0;
+    public static int joystick2Port = 1;
 }
