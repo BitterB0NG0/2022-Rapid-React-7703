@@ -4,13 +4,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveBaseSubsystem;
 
-public class ArcadeDrive extends CommandBase {
-    
+public class CurvatureDrive extends CommandBase {
+
     // Declaring an Instance of DriveBaseSubsystem
     private final DriveBaseSubsystem driveBaseSubsystem;
 
     // ArcadeDrive Command Method
-    public ArcadeDrive(DriveBaseSubsystem subsystem) {
+    public CurvatureDrive(DriveBaseSubsystem subsystem) {
         driveBaseSubsystem = subsystem;
         addRequirements(driveBaseSubsystem);
     }
@@ -24,13 +24,13 @@ public class ArcadeDrive extends CommandBase {
     // Method Called Everytime the Scheduler Runs While Command is Scheduled
     @Override
     public void execute() {
-        driveBaseSubsystem.arcadeDrive(RobotContainer.stick.getY(), RobotContainer.stick.getY(), true);
+        driveBaseSubsystem.curvatureDrive(RobotContainer.stick.getY(), RobotContainer.stick.getY(), true);
     }
 
     // Method Called When the Command Ends or is Interrputed
     @Override
     public void end(boolean interrupted) {
-        driveBaseSubsystem.arcadeDrive(0.0, 0.0, true);
+        driveBaseSubsystem.curvatureDrive(0.0, 0.0, true);
     }
 
     // Method Return "true" when the Command Should End
@@ -43,5 +43,5 @@ public class ArcadeDrive extends CommandBase {
     public boolean runsWhenDisabled() {
         return false;
     }
-
+    
 }

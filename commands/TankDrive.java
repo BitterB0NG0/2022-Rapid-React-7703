@@ -24,13 +24,13 @@ public class TankDrive extends CommandBase {
     // Method Called Everytime the Scheduler Runs While Command is Scheduled
     @Override
     public void execute() {
-        driveBaseSubsystem.tankDrive(RobotContainer.stick1.getY(), RobotContainer.stick2.getY());
+        driveBaseSubsystem.tankDrive(RobotContainer.stick1.getY(), RobotContainer.stick2.getY(), true);
     }
 
     // Method Called When the Command Ends or is Interrputed
     @Override
     public void end(boolean interrupted) {
-        driveBaseSubsystem.tankDrive(0.0, 0.0);
+        driveBaseSubsystem.tankDrive(0.0, 0.0, true);
     }
 
     // Method Return "true" when the Command Should End

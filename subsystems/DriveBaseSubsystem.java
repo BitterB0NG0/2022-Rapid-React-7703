@@ -62,12 +62,17 @@ public class DriveBaseSubsystem extends SubsystemBase {
     }
 
     // aracdeDrive Method
-    public void arcadeDrive(double xSpeed, double zRotationSpeed) {
-        differentialDrive.arcadeDrive(xSpeed, zRotationSpeed);
+    public void arcadeDrive(double xSpeed, double zRotationSpeed, boolean squareInputs) {
+        differentialDrive.arcadeDrive(xSpeed, zRotationSpeed, squareInputs);
     }
 
     // tankDrive Method
-    public void tankDrive( double xLeftSpeed, double xRightSpeed) {
+    public void tankDrive( double xLeftSpeed, double xRightSpeed, boolean squareInputs) {
         differentialDrive.tankDrive(xLeftSpeed, xRightSpeed);
     }
-}
+
+    // curvature Method
+    public void curvatureDrive(double xSpeed, double zRotationSpeed, boolean squareInputs) {
+        differentialDrive.curvatureDrive(xSpeed, zRotationSpeed, squareInputs);
+    }
+} 
