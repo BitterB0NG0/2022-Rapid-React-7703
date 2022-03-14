@@ -28,7 +28,6 @@ import edu.wpi.first.cameraserver.CameraServer;
 
 //user created files for import
 import frc.robot.Constants;
-import main.java.frc.robot.Subsystems.DriveBaseSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -38,10 +37,9 @@ import main.java.frc.robot.Subsystems.DriveBaseSubsystem;
  */
 public class Robot extends TimedRobot {
 
-//Declarining Instances of Subsystems
-  DriveBaseSubsystem m_driveBaseSubsystem;
+  //Declarining Instances of Subsystems
 
-//Bjorn's Nonsense
+  //Bjorn's Nonsense
   VictorSPX motor1 = new VictorSPX(4);
   LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
   Thread m_visionThread;
@@ -49,25 +47,12 @@ public class Robot extends TimedRobot {
   double prevXAccel = 0;
   double prevYAccel = 0;
 
-
-
-  private static final String kDefaultAuto = "Default";
-  private static final String kCustomAuto = "My Auto";
-  private String m_autoSelected;
-  private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
   @Override
   public void robotInit() {
-    
-    m_driveBaseSubsystem = new DriveBaseSubsystem();
-
-    m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
-    m_chooser.addOption("My Auto", kCustomAuto);
-    SmartDashboard.putData("Auto choices", m_chooser);
     motor1.set(ControlMode.PercentOutput, 0);
     CameraServer.getInstance().startAutomaticCapture(0);
   }
@@ -96,8 +81,6 @@ public class Robot extends TimedRobot {
     prevYAccel = yAccel;  
 
     double filteredXAccel = xAccelFilter.calculate(Constants.accelerometer.getX());
-    System.out.println("Filtered X Accel: ");
-    System.out.print(filteredXAccel);
 
   }
 
@@ -112,25 +95,11 @@ public class Robot extends TimedRobot {
    * chooser code above as well.
    */
   @Override
-  public void autonomousInit() {
-    m_autoSelected = m_chooser.getSelected();
-    // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
-    System.out.println("Auto selected: " + m_autoSelected);
-  }
+  public void autonomousInit() {}
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {
-    switch (m_autoSelected) {
-      case kCustomAuto:
-        // Put custom auto code here
-        break;
-      case kDefaultAuto:
-      default:
-        // Put default auto code here
-        break;
-    }
-  }
+  public void autonomousPeriodic() {}
 
   /** This function is called once when teleop is enabled. */
   @Override
@@ -141,19 +110,8 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     double rawValue = Constants.ultrasonic.getValue();
     
-    System.out.println("\n\n----------------------------");
     double voltage_scale_factor = 5/RobotController.getVoltage5V();
     double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
-    System.out.println(currentDistanceCentimeters);
-    System.out.println("----------------------------\n\n");
-
-    // double voltage_scale_factor = 5/RobotController.getVoltage5V();
-
-    // double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
-
-    // double currentDistanceInches = rawValue * voltage_scale_factor * 0.0492;
-
-    // System.out.println(String.valueOf(currentDistanceInches));
   }
 
   /** This function is called once when the robot is disabled. */

@@ -1,78 +1,26 @@
-package main.java.frc.robot.Subsystems;
+package frc.robot.Subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import frc.robot.Constants;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-public class DriveBaseSubsystem extends SubsystemBase {
-    
-    //Declaring Instances of Component/Drive System Methods
-    private VictorSPX leftMotorController1;
-    private VictorSPX leftMotorController2;
-    private MotorControllerGroup leftMotorControllerGroup;
-    private VictorSPX rightMotorController1;
-    private VictorSPX rightMotorController2;
-    private MotorControllerGroup rightMotorControllerGroup;
-    private DifferentialDrive differentialDrive;
-
-    // DriveBaseSubystem Subsystem Method
-    public DriveBaseSubsystem() {
-        // Declaring Motor Controllers and Motor Controller Groups
-        leftMotorController1 = new VictorSPX(0);
-         addChild("left1", leftMotorController1);
-         leftMotorController1.setInverted(false);
-
-        leftMotorController2 = new VictorSPX(1);
-         addChild("left2", leftMotorController2);
-         leftMotorController2.setInverted(false);
-
-        leftMotorControllerGroup = new MotorControllerGroup(leftMotorController1, leftMotorController2);
-         addChild("Left Motor", leftMotorControllerGroup);
-
-        rightMotorController1 = new VictorSPX(5);
-         addChild("right1", rightMotorController1);
-         rightMotorController1.setInverted(false);
-
-        rightMotorController2 = new VictorSPX(6);
-         addChild("right2", rightMotorController2);
-         rightMotorController2.setInverted(false);
+public class DriveBaseSubsystem {
+    public static void main(String[] args) {
         
-        rightMotorControllerGroup = new MotorControllerGroup(rightMotorController1, rightMotorController2);
-         addChild("Right Motor", rightMotorControllerGroup);
-
-        // Declaring an Instance of DifferentialDrive
-        differentialDrive = new DifferentialDrive(leftMotorControllerGroup, rightMotorControllerGroup);
-         addChild("Drive", differentialDrive);
-        
-        // Calling Miscellaneous Methods
-        differentialDrive.setSafetyEnabled(true);
-        differentialDrive.setExpiration(0.1);
-        differentialDrive.setMaxOutput(1.0);
     }
 
-    // Method Called Periodically, Once per Scheduler Run
-    @Override
-    public void periodic() {
+    public void drivePercent(double percent) {
+        Constants.firstLeftDriveBase.set(ControlMode.PercentOutput, percent);
+        Constants.secondLeftDriveBase.set(ControlMode.PercentOutput, percent);
+
+        Constants.firstRightDriveBase.set(ControlMode.PercentOutput, percent * -1);
+        Constants.secondRightDriveBase.set(ControlMode.PercentOutput, percent * -1);
     }
 
-    // Method Called Periodically, Once per Scheduler Run, During a Simulation
-    @Override
-    public void simulationPeriodic() {
-    }
+    public void driveDistance(double centimeters) {
 
-    // aracdeDrive Method
-    public void arcadeDrive(double xSpeed, double zRotationSpeed, boolean squareInputs) {
-        differentialDrive.arcadeDrive(xSpeed, zRotationSpeed, squareInputs);
-    }
-
-    // tankDrive Method
-    public void tankDrive( double xLeftSpeed, double xRightSpeed, boolean squareInputs) {
-        differentialDrive.tankDrive(xLeftSpeed, xRightSpeed);
-    }
-
-    // curvatureDrive Method
-    public void curvatureDrive(double xSpeed, double zRotationSpeed, boolean squareInputs) {
-        differentialDrive.curvatureDrive(xSpeed, zRotationSpeed, squareInputs);
     }
 } 
