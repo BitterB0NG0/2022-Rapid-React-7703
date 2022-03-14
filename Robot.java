@@ -28,6 +28,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 
 //user created files for import
 import frc.robot.Constants;
+import main.java.frc.robot.Subsystems.DriveBaseSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -36,6 +37,11 @@ import frc.robot.Constants;
  * project.
  */
 public class Robot extends TimedRobot {
+
+//Declarining Instances of Subsystems
+  DriveBaseSubsystem m_driveBaseSubsystem;
+
+//Bjorn's Nonsense
   VictorSPX motor1 = new VictorSPX(4);
   LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
   Thread m_visionThread;
@@ -56,6 +62,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    
+    m_driveBaseSubsystem = new DriveBaseSubsystem();
+
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
