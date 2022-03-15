@@ -7,11 +7,15 @@ public class ShooterSubsystem {
         
     }
 
+    public void calculateFlyWheelSpeeds() {
+
+    }
+
     public void loadShooter() {
 
     }
 
-    public void activeShooter() {
+    public void loadShootingFlyWheels() {
 
     }
 

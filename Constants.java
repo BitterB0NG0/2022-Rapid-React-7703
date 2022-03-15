@@ -22,7 +22,7 @@ public class Constants {
     VictorSPX motor6 = new VictorSPX(7);
 
 
-    // Defining DriveBaseSubsystem
+    // Defining DriveBaseSubsystem Objects/Variables
     public static WPI_VictorSPX frontLeftDriveMotorController = new WPI_VictorSPX(2);
     public static WPI_VictorSPX backLeftDriveMotorController = new WPI_VictorSPX(3);
     static MotorControllerGroup leftDriveMotorControllerGroup = new MotorControllerGroup(frontLeftDriveMotorController, backLeftDriveMotorController);
@@ -33,8 +33,9 @@ public class Constants {
 
     public static DifferentialDrive differentialDrive = new DifferentialDrive(leftDriveMotorControllerGroup, rightDriveControllerGroup);
 
-    // Defining IntakeSubsystem *NOTE:BUS PORT TEMPORARY
+    // Defining IntakeSubsystem Objects/Variables *NOTE:BUS PORT TEMPORARY
     public static WPI_VictorSPX intakeMotorController = new WPI_VictorSPX(4);
+    public static double initialIntakeMotorSpeed = 0;
 
     // Defining IO & Sensors
     public static Joystick mainJoystick = new Joystick(0);

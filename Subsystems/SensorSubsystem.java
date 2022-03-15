@@ -7,7 +7,7 @@ import frc.robot.Constants;
 
 public class SensorSubsystem {
 
-    // Accelerometer
+    // Filitering Input Accelration
     LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
     LinearFilter yAccelFilter = LinearFilter.movingAverage(10);
     double prevXAccel = 0;
