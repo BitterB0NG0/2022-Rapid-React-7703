@@ -19,11 +19,13 @@ public class Constants {
 
     // VictorSPX motor1 = new VictorSPX(2);
     // VictorSPX motor2 = new VictorSPX(3);
-    // VictorSPX motor3 = new VictorSPX(4);
-    // VictorSPX motor4 = new VictorSPX(5);
-    // VictorSPX motor5 = new VictorSPX(6);
-    // VictorSPX motor6 = new VictorSPX(7);
+    VictorSPX motor3 = new VictorSPX(4);
+    VictorSPX motor4 = new VictorSPX(5);
+    VictorSPX motor5 = new VictorSPX(6);
+    VictorSPX motor6 = new VictorSPX(7);
 
+
+    // Defining DriveBaseSubsystem
     public static WPI_VictorSPX frontLeftDriveMotorController = new WPI_VictorSPX(2);
     public static WPI_VictorSPX backLeftDriveMotorController = new WPI_VictorSPX(3);
     static MotorControllerGroup leftDriveMotorControllerGroup = new MotorControllerGroup(frontLeftDriveMotorController, backLeftDriveMotorController);
@@ -34,7 +36,10 @@ public class Constants {
 
     public static DifferentialDrive differentialDrive = new DifferentialDrive(leftDriveMotorControllerGroup, rightDriveControllerGroup);
 
-    
+    // Defining IntakeSubsystem *NOTE:BUS PORT TEMPORARY
+    public static WPI_VictorSPX intakeMotorController = new WPI_VictorSPX(4);
+
+    // Defining IO & Sensors
     public static Joystick mainJoystick = new Joystick(0);
     static AnalogInput ultrasonic = new AnalogInput(0);
     static Accelerometer accelerometer = new BuiltInAccelerometer();

@@ -26,9 +26,10 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import edu.wpi.first.cameraserver.CameraServer;
 
-//user created files for import
+// user created files for import
 import frc.robot.Constants;
 import frc.robot.Subsystems.DriveBaseSubsystem;
+import frc.robot.Subsystems.IntakeSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -38,40 +39,35 @@ import frc.robot.Subsystems.DriveBaseSubsystem;
  */
 public class Robot extends TimedRobot {
 
-  //Declarining Instances of Subsystems
+  // Declarining Instances of Subsystems
   DriveBaseSubsystem driveBaseSubsystem = new DriveBaseSubsystem();
+  IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
-  //Bjorn's Nonsense
+  // Accelerometer
   LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
   Thread m_visionThread;
 
   double prevXAccel = 0;
   double prevYAccel = 0;
 
+  // *NOTE: This should get the current position of the joystick
   double xAxisValue = 0;
   double yAxisValue = 0;
+  double zAxisValue = 0.05;
 
-  /**
-   * This function is run when the robot is first started up and should be used for any
-   * initialization code.
-   */
+  // This function is run when the robot is first started up and should be used for any initialization code.
   @Override
   public void robotInit() {
-    CameraServer.getInstance().startAutomaticCapture(0);
+    // CameraServer.getInstance().startAutomaticCapture(0);
   }
 
-  /**
-   * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
-   * that you want ran during disabled, autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before LiveWindow and
-   * SmartDashboard integrated updating.
-   */
+  // This function is called every 20 ms, no matter the mode. Use this for items like diagnostics that you want ran during disabled, autonomous, teleoperated and test.
   @Override
   public void robotPeriodic() {
 
     yAxisValue = Constants.mainJoystick.getRawAxis(1);
     xAxisValue = Constants.mainJoystick.getRawAxis(0);
+    zAxisValue = Constants.mainJoystick.getRawAxis(2);
 
     // Gets the current accelerations in the X and Y directions
     double xAccel = Constants.accelerometer.getX();
@@ -102,49 +98,54 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {}
 
-  /** This function is called periodically during autonomous. */
+  // This function is called periodically during autonomous.
   @Override
   public void autonomousPeriodic() {}
 
-  /** This function is called
-   *  once when teleop is enabled. */
+  // This function is called once when teleop is enabled.
   @Override
   public void teleopInit() {}
 
-  /** This function is called periodically during operator control. */
+  // This function is called periodically during operator control.
   @Override
   public void teleopPeriodic() {
 
     // double rawValue = Constants.ultrasonic.getValue();
     // double voltage_scale_factor = 5/RobotController.getVoltage5V();
     // double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
+    
 
+    // Drive Subsystem Method Selections
     driveBaseSubsystem.drivePercentArcade(xAxisValue, yAxisValue, true);
     // driveBaseSubsystem.drivePercentCurvature(xAxisValue, yAxisValue, true);
     // driveBaseSubsystem.drivePercentTank(xAxisValue * yAxisValue, xAxisValue * yAxisValue * -1, true);
+
+    // Calling Intake Subsystem
+    // *NOTE: USE OF THE zAxis is incorrect and temporary
+    intakeSubsystem.activateIntake(zAxisValue);
   }
 
-  /** This function is called once when the robot is disabled. */
+  // This function is called once when the robot is disabled.
   @Override
   public void disabledInit() {}
 
-  /** This function is called periodically when disabled. */
+  // This function is called periodically when disabled.
   @Override
   public void disabledPeriodic() {}
 
-  /** This function is called once when test mode is enabled. */
+  // This function is called once when test mode is enabled.
   @Override
   public void testInit() {}
 
-  /** This function is called periodically during test mode. */
+  // This function is called periodically during test mode.
   @Override
   public void testPeriodic() {}
 
-  /** This function is called once when the robot is first started up. */
+  // This function is called once when the robot is first started up.
   @Override
   public void simulationInit() {}
 
-  /** This function is called periodically whilst in simulation. */
+  // This function is called periodically whilst in simulation.
   @Override
   public void simulationPeriodic() {}
 }
