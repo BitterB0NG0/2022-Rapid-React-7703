@@ -23,24 +23,28 @@ public class Robot extends TimedRobot {
   ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   SensorSubsystem sensorSubsystem = new SensorSubsystem();
     
-  // Declaring Joystick/Sensor Variables
+  // Declaring Input Variables
   double xAxisValue;
   double yAxisValue;
   double zAxisValue;
   double[] acceleration;
   double distance;
+  public static double currentIntakeMotorSpeed;
 
-  // "robotInit()" called during robot operation initiilzation regardless of mode
+  // "robotInit()" is called during robot operation initiilzation regardless of mode
   @Override
   public void robotInit() {
-    // Running subsystem initilization methods
+    // Defining Initial Input Varaibles
+    currentIntakeMotorSpeed = Constants.initialIntakeMotorSpeed;
+
+    // Running Subsystem Initilization Methods
     sensorSubsystem.cameraInit();
   }
 
-  // "robotPeriodic()" called periodically, every 20ms, during robot operation regardless of mode
+  // "robotPeriodic()" is called periodically, every 20ms, during robot operation regardless of mode
   @Override
   public void robotPeriodic() {
-    // Defining Joystick Variables
+    // Updating Input Variables
     xAxisValue = Constants.mainJoystick.getRawAxis(0);
     yAxisValue = Constants.mainJoystick.getRawAxis(1);
     zAxisValue = Constants.mainJoystick.getRawAxis(2);
@@ -55,15 +59,15 @@ public class Robot extends TimedRobot {
   The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard, remove all of the chooser code and uncomment the getString line to get the auto name from the text box below the Gyro.  
   You can add additional auto modes by adding additional comparisons to the switch structure below with additional strings. If using the SendableChooser make sure to add them to the chooser code above as well. */
 
-  // "autonomousInit()" called during autonomous mode initilization
+  // "autonomousInit()" is called during autonomous mode initilization
   @Override
   public void autonomousInit() {}
 
-  // "autonomousPeriodic" called periodically during autonomous mode
+  // "autonomousPeriodic" is called periodically during autonomous mode
   @Override
   public void autonomousPeriodic() {}
 
-  // "teleopInit()" called during teleoperation mode initilization
+  // "teleopInit()" is called during teleoperation mode initilization
   @Override
   public void teleopInit() {}
 
@@ -77,34 +81,38 @@ public class Robot extends TimedRobot {
     // driveBaseSubsystem.drivePercentTank(xAxisValue * yAxisValue, xAxisValue * yAxisValue * -1, true);
 
     // IntakeSubsystem
-    intakeSubsystem.activateIntake(zAxisValue);
+    intakeSubsystem.activateIntake(currentIntakeMotorSpeed);
 
     if(Constants.mainJoystick.getRawButton(0)) {
-      System.out.println("trigger pressed!");
+      intakeSubsystem.increaseIntakeSpeed(currentIntakeMotorSpeed);
+    }
+
+    if(Constants.mainJoystick.getRawButton(1)) {
+      intakeSubsystem.decreaseIntakeSpeed(currentIntakeMotorSpeed);
     }
   }
 
-  // "disabledInit()" called during disabled mode initilization
+  // "disabledInit()" is called during disabled mode initilization
   @Override
   public void disabledInit() {}
 
-  // "disabledPeriodic()" called periodically during disabled mode 
+  // "disabledPeriodic()" is called periodically during disabled mode 
   @Override
   public void disabledPeriodic() {}
 
-  // "testInit()" called during test mode initilization
+  // "testInit()" is called during test mode initilization
   @Override
   public void testInit() {}
 
-  // "testPeriodic()" called periodically during test mode
+  // "testPeriodic()" is called periodically during test mode
   @Override
   public void testPeriodic() {}
 
-  // "simulationInit()" called during simulation mode initilization
+  // "simulationInit()" is called during simulation mode initilization
   @Override
   public void simulationInit() {}
 
-  // "simulationPeriodic()" called during periodic mode initilization
+  // "simulationPeriodic()" is called during periodic mode initilization
   @Override
   public void simulationPeriodic() {}
 }
