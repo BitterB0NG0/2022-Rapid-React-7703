@@ -78,6 +78,10 @@ public class Robot extends TimedRobot {
 
     // IntakeSubsystem
     intakeSubsystem.activateIntake(zAxisValue);
+
+    if(Constants.mainJoystick.getRawButton(0)) {
+      System.out.println("trigger pressed!");
+    }
   }
 
   // "disabledInit()" called during disabled mode initilization
