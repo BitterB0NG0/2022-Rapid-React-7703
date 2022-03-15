@@ -39,6 +39,7 @@ import frc.robot.Subsystems.DriveBaseSubsystem;
 public class Robot extends TimedRobot {
 
   //Declarining Instances of Subsystems
+  DriveBaseSubsystem driveBaseSubsystem = new DriveBaseSubsystem();
 
   //Bjorn's Nonsense
   LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
@@ -49,8 +50,6 @@ public class Robot extends TimedRobot {
 
   double xAxisValue = 0;
   double yAxisValue = 0;
-
-  DriveBaseSubsystem driveBase = new DriveBaseSubsystem();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -116,12 +115,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    double rawValue = Constants.ultrasonic.getValue();
-    
-    double voltage_scale_factor = 5/RobotController.getVoltage5V();
-    double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
+    // double rawValue = Constants.ultrasonic.getValue();
+    // double voltage_scale_factor = 5/RobotController.getVoltage5V();
+    // double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
 
-    driveBase.drivePercent(xAxisValue, yAxisValue, false);
+    driveBaseSubsystem.drivePercentArcade(xAxisValue, yAxisValue, true);
+    // driveBaseSubsystem.drivePercentCurvature(xAxisValue, yAxisValue, true);
+    // driveBaseSubsystem.drivePercentTank(xAxisValue * yAxisValue, xAxisValue * yAxisValue * -1, true);
   }
 
   /** This function is called once when the robot is disabled. */
