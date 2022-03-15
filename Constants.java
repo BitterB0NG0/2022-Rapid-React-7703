@@ -16,14 +16,14 @@ public class Constants {
 
     // VictorSPX motor1 = new VictorSPX(2);
     // VictorSPX motor2 = new VictorSPX(3);
-    public static VictorSPX frontLeftDriveBase = new VictorSPX(2);
-    public static VictorSPX backLeftDriveBase = new VictorSPX(3);
+    public static VictorSPX frontLeftDriveMotorController = new VictorSPX(2);
+    public static VictorSPX backLeftDriveMotorController = new VictorSPX(3);
     VictorSPX motor3 = new VictorSPX(4);
     VictorSPX motor4 = new VictorSPX(5);
     VictorSPX motor5 = new VictorSPX(6);
     VictorSPX motor6 = new VictorSPX(7);
-    public static VictorSPX frontRightDriveBase = new VictorSPX(8);
-    public static VictorSPX backRightDriveBase = new VictorSPX(9);
+    public static VictorSPX frontRightDriveMotorController = new VictorSPX(8);
+    public static VictorSPX backRightDriveMotorController = new VictorSPX(9);
 
     static Joystick mainJoystick = new Joystick(0);
     static AnalogInput ultrasonic = new AnalogInput(0);

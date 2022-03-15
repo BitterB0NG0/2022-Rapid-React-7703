@@ -12,15 +12,16 @@ public class DriveBaseSubsystem {
         
     }
 
-    public void drivePercent(double percent) {
-        Constants.frontLeftDriveBase.set(ControlMode.PercentOutput, percent * -1);
-        Constants.backLeftDriveBase.set(ControlMode.PercentOutput, percent * -1);
+    public void drivePercent(double percentPower) {
+        Constants.frontLeftDriveMotorController.set(ControlMode.PercentOutput, percentPower * -1);
+        Constants.backLeftDriveMotorController.set(ControlMode.PercentOutput, percentPower * -1);
 
-        Constants.frontRightDriveBase.set(ControlMode.PercentOutput, percent);
-        Constants.backRightDriveBase.set(ControlMode.PercentOutput, percent);
+        Constants.frontRightDriveMotorController.set(ControlMode.PercentOutput, percentPower);
+        Constants.backRightDriveMotorController.set(ControlMode.PercentOutput, percentPower);
     }
 
-    public void driveDistance(double centimeters) {
+    public void driveDistance(double centimeterDistance) {
 
     }
+
 } 
