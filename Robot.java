@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     // Running subsystem initilization methods
-    sensorSubsystem.cameraInit(Constants.cameraPorts);
+    sensorSubsystem.cameraInit();
   }
 
   // "robotPeriodic()" called periodically, every 20ms, during robot operation regardless of mode
@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
     // Running Subsystem Methods
     // SensorSubsystem
     acceleration = sensorSubsystem.accelerometerPeriodic();
-    distance = sensorSubsystem.distanceSensorValue();
+    distance = sensorSubsystem.distanceSensorValuePeriodic();
   }
 
   /* This autonomous (along with the chooser code above) shows how to select between different autonomous modes using the dashboard. 

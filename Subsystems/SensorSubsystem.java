@@ -20,8 +20,8 @@ public class SensorSubsystem {
         
     }
 
-    public void cameraInit(int cameraPort) {
-        CameraServer.getInstance().startAutomaticCapture(cameraPort);
+    public void cameraInit() {
+        CameraServer.startAutomaticCapture();
     }
 
     public double[] accelerometerPeriodic() {
@@ -44,7 +44,7 @@ public class SensorSubsystem {
         return arr;
     }
 
-    public double distanceSensorValue() {
+    public double distanceSensorValuePeriodic() {
         double rawValue = Constants.ultrasonic.getValue();
         double voltage_scale_factor = 5/RobotController.getVoltage5V();
         double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
