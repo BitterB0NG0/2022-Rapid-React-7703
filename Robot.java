@@ -28,6 +28,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 
 //user created files for import
 import frc.robot.Constants;
+import frc.robot.Subsystems.DriveBaseSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -40,12 +41,15 @@ public class Robot extends TimedRobot {
   //Declarining Instances of Subsystems
 
   //Bjorn's Nonsense
-  VictorSPX motor1 = new VictorSPX(4);
   LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
   Thread m_visionThread;
 
   double prevXAccel = 0;
   double prevYAccel = 0;
+
+  double axisValue = 0;
+
+  DriveBaseSubsystem driveBase = new DriveBaseSubsystem();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -53,7 +57,6 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    motor1.set(ControlMode.PercentOutput, 0);
     CameraServer.getInstance().startAutomaticCapture(0);
   }
 
@@ -66,7 +69,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    motor1.set(ControlMode.PercentOutput, .2);
+
+    axisValue = Constants.mainJoystick.getRawAxis(1);
 
     // Gets the current accelerations in the X and Y directions
     double xAccel = Constants.accelerometer.getX();
@@ -101,17 +105,22 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {}
 
-  /** This function is called once when teleop is enabled. */
+  /** This function is called
+   *  once when teleop is enabled. */
   @Override
   public void teleopInit() {}
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
+
     double rawValue = Constants.ultrasonic.getValue();
     
     double voltage_scale_factor = 5/RobotController.getVoltage5V();
     double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
+
+    System.out.println(axisValue);
+    driveBase.drivePercent(axisValue);
   }
 
   /** This function is called once when the robot is disabled. */

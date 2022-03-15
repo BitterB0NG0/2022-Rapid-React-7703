@@ -25,7 +25,7 @@ public class Constants {
     public static VictorSPX firstRightDriveBase = new VictorSPX(8);
     public static VictorSPX secondRightDriveBase = new VictorSPX(9);
 
-    Joystick mainJoystick = new Joystick(0);
+    static Joystick mainJoystick = new Joystick(0);
     static AnalogInput ultrasonic = new AnalogInput(0);
 
     static Accelerometer accelerometer = new BuiltInAccelerometer();
