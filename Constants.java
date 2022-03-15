@@ -11,10 +11,8 @@ import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
 public class Constants {
-    /* 
-    *  The CAN IDs are set up from first device to last, even if the said last device is not powered up, or even used by the code (I'm looking at you PDP).
-    *  These motor names SHOULD be changed depending on their purpose in the final code!
-    */
+    /* The CAN IDs are set up from first device to last, even if the said last device is not powered up, or even used by the code (I'm looking at you PDP).
+    These motor names SHOULD be changed depending on their purpose in the final code! */
 
     // VictorSPX motor1 = new VictorSPX(2);
     // VictorSPX motor2 = new VictorSPX(3);
@@ -44,6 +42,4 @@ public class Constants {
     public static Accelerometer accelerometer = new BuiltInAccelerometer();
     public static int cameraPorts = 0;
     
-
-
 }

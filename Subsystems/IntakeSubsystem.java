@@ -11,14 +11,12 @@ public class IntakeSubsystem {
         Constants.intakeMotorController.set(intakeMotorSpeed);
     }
 
-    public void increaseIntakeSpeed() {
-
+    public void increaseIntakeSpeed(double intakeMotorSpeed) {
+        Constants.intakeMotorController.set(intakeMotorSpeed - 0.5);
     }
 
-    public void decreaseIntakeSpeed() {
-        
+    public void decreaseIntakeSpeed(double intakeMotorSpeed) {
+        Constants.intakeMotorController.set(intakeMotorSpeed - 0.5);
+
     }
-
-
-
 }

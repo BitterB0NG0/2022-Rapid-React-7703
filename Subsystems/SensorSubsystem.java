@@ -5,9 +5,9 @@ import edu.wpi.first.math.filter.LinearFilter;
 import edu.wpi.first.wpilibj.RobotController;
 import frc.robot.Constants;
 
-public class SensorSybsystem {
+public class SensorSubsystem {
 
-    //accelerometer
+    // Accelerometer
     LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
     LinearFilter yAccelFilter = LinearFilter.movingAverage(10);
     double prevXAccel = 0;
