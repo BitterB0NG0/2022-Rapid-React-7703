@@ -30,6 +30,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import frc.robot.Constants;
 import frc.robot.Subsystems.DriveBaseSubsystem;
 import frc.robot.Subsystems.IntakeSubsystem;
+import frc.robot.Subsystems.SensorSybsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -51,14 +52,23 @@ public class Robot extends TimedRobot {
   double prevYAccel = 0;
 
   // *NOTE: This should get the current position of the joystick
+
+  // for Joysticks
   double xAxisValue = 0;
   double yAxisValue = 0;
   double zAxisValue = 0.05;
 
-  // This function is run when the robot is first started up and should be used for any initialization code.
+  SensorSybsystem sensors = new SensorSybsystem();
+  double[] acceleration;
+  double distance;
+
+  /**
+   * This function is run when the robot is first started up and should be used for any
+   * initialization code.
+   */
   @Override
   public void robotInit() {
-    // CameraServer.getInstance().startAutomaticCapture(0);
+    sensors.cameraInit(Constants.cameraPorts);
   }
 
   // This function is called every 20 ms, no matter the mode. Use this for items like diagnostics that you want ran during disabled, autonomous, teleoperated and test.
@@ -69,19 +79,11 @@ public class Robot extends TimedRobot {
     xAxisValue = Constants.mainJoystick.getRawAxis(0);
     zAxisValue = Constants.mainJoystick.getRawAxis(2);
 
-    // Gets the current accelerations in the X and Y directions
-    double xAccel = Constants.accelerometer.getX();
-    double yAccel = Constants.accelerometer.getY();
 
-    // Calculates the jerk in the X and Y directions
-    // Divides by .02 because default loop timing is 20ms
-    double xJerk = (xAccel - prevXAccel)/.02;
-    double yJerk = (yAccel - prevYAccel)/.02;
 
-    prevXAccel = xAccel;
-    prevYAccel = yAccel;  
+    acceleration = sensors.accelerometerPeriodic();
 
-    double filteredXAccel = xAccelFilter.calculate(Constants.accelerometer.getX());
+    distance = sensors.distanceSensorValue();
 
   }
 
@@ -109,12 +111,7 @@ public class Robot extends TimedRobot {
   // This function is called periodically during operator control.
   @Override
   public void teleopPeriodic() {
-
-    // double rawValue = Constants.ultrasonic.getValue();
-    // double voltage_scale_factor = 5/RobotController.getVoltage5V();
-    // double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
     
-
     // Drive Subsystem Method Selections
     driveBaseSubsystem.drivePercentArcade(xAxisValue, yAxisValue, true);
     // driveBaseSubsystem.drivePercentCurvature(xAxisValue, yAxisValue, true);

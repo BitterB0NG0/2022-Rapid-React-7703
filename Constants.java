@@ -41,8 +41,10 @@ public class Constants {
 
     // Defining IO & Sensors
     public static Joystick mainJoystick = new Joystick(0);
-    static AnalogInput ultrasonic = new AnalogInput(0);
-    static Accelerometer accelerometer = new BuiltInAccelerometer();
+    public static AnalogInput ultrasonic = new AnalogInput(0);
+    public static Accelerometer accelerometer = new BuiltInAccelerometer();
+    public static int cameraPorts = 0;
+    
 
 
 }
