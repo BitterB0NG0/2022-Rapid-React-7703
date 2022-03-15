@@ -47,7 +47,8 @@ public class Robot extends TimedRobot {
   double prevXAccel = 0;
   double prevYAccel = 0;
 
-  double axisValue = 0;
+  double xAxisValue = 0;
+  double yAxisValue = 0;
 
   DriveBaseSubsystem driveBase = new DriveBaseSubsystem();
 
@@ -70,7 +71,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
 
-    axisValue = Constants.mainJoystick.getRawAxis(1);
+    yAxisValue = Constants.mainJoystick.getRawAxis(1);
+    xAxisValue = Constants.mainJoystick.getRawAxis(0);
 
     // Gets the current accelerations in the X and Y directions
     double xAccel = Constants.accelerometer.getX();
@@ -119,8 +121,7 @@ public class Robot extends TimedRobot {
     double voltage_scale_factor = 5/RobotController.getVoltage5V();
     double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
 
-    System.out.println(axisValue);
-    driveBase.drivePercent(axisValue);
+    driveBase.drivePercent(xAxisValue, yAxisValue, false);
   }
 
   /** This function is called once when the robot is disabled. */

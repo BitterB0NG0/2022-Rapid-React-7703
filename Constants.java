@@ -1,11 +1,14 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.cameraserver.CameraServer;
 
 public class Constants {
@@ -16,16 +19,22 @@ public class Constants {
 
     // VictorSPX motor1 = new VictorSPX(2);
     // VictorSPX motor2 = new VictorSPX(3);
-    public static VictorSPX firstLeftDriveBase = new VictorSPX(2);
-    public static VictorSPX secondLeftDriveBase = new VictorSPX(3);
+    public static WPI_VictorSPX firstLeftDriveBase = new WPI_VictorSPX(2);
+    public static WPI_VictorSPX secondLeftDriveBase = new WPI_VictorSPX(3);
+    MotorControllerGroup leftDriveBase = new MotorControllerGroup(firstLeftDriveBase, secondLeftDriveBase);
+
     VictorSPX motor3 = new VictorSPX(4);
     VictorSPX motor4 = new VictorSPX(5);
     VictorSPX motor5 = new VictorSPX(6);
     VictorSPX motor6 = new VictorSPX(7);
-    public static VictorSPX firstRightDriveBase = new VictorSPX(8);
-    public static VictorSPX secondRightDriveBase = new VictorSPX(9);
 
-    static Joystick mainJoystick = new Joystick(0);
+    public static WPI_VictorSPX firstRightDriveBase = new WPI_VictorSPX(8);
+    public static WPI_VictorSPX secondRightDriveBase = new WPI_VictorSPX(9);
+    MotorControllerGroup rightDriveBase = new MotorControllerGroup(firstRightDriveBase, secondRightDriveBase);
+
+    public static DifferentialDrive driveBase = new DifferentialDrive(firstRightDriveBase, secondRightDriveBase);
+
+    public static Joystick mainJoystick = new Joystick(0);
     static AnalogInput ultrasonic = new AnalogInput(0);
 
     static Accelerometer accelerometer = new BuiltInAccelerometer();
