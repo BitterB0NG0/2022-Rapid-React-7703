@@ -74,20 +74,29 @@ public class Robot extends TimedRobot {
   // "teleopPeriodic()" called periodically during teleoperation mode
   @Override
   public void teleopPeriodic() {
-    // Running Comand/Control Methods
-    // DriveBaseSubsystem 
-    driveBaseSubsystem.drivePercentArcade(xAxisValue, yAxisValue, true);
-    // driveBaseSubsystem.drivePercentCurvature(xAxisValue, yAxisValue, true);
-    // driveBaseSubsystem.drivePercentTank(xAxisValue * yAxisValue, xAxisValue * yAxisValue * -1, true);
+    // Running Command Methods: DriveBaseSubsystem 
+    if(Constants.driveModeIndex == 0) {
+      driveBaseSubsystem.drivePercentArcade(xAxisValue, yAxisValue, true);
+    }
 
-    // IntakeSubsystem
-    intakeSubsystem.activateIntake(currentIntakeMotorSpeed);
-
+    if(Constants.driveModeIndex == 1) {
+      driveBaseSubsystem.drivePercentCurvature(xAxisValue, yAxisValue, true);
+    }
+  
+    if(Constants.driveModeIndex == 2) {
+      driveBaseSubsystem.drivePercentTank(xAxisValue * yAxisValue, xAxisValue * yAxisValue * -1, true);
+    }
+  
+    // Running Command Methods: IntakeSubsystem 
     if(Constants.mainJoystick.getRawButton(0)) {
+      intakeSubsystem.activateIntake(Constants.initialIntakeMotorSpeed);
+    }
+    
+    if(Constants.mainJoystick.getRawButton(1)) {
       intakeSubsystem.increaseIntakeSpeed(currentIntakeMotorSpeed);
     }
 
-    if(Constants.mainJoystick.getRawButton(1)) {
+    if(Constants.mainJoystick.getRawButton(2)) {
       intakeSubsystem.decreaseIntakeSpeed(currentIntakeMotorSpeed);
     }
   }

@@ -12,17 +12,17 @@ public class IntakeSubsystem {
         Constants.intakeMotorController.set(intakeMotorSpeed);
     }
 
-    public void deacrivateIntake(double intakeMotorSpeed) {
+    public void deactivateIntake(double intakeMotorSpeed) {
         Constants.intakeMotorController.stopMotor();
     }
 
     public void increaseIntakeSpeed(double intakeMotorSpeed) {
         Robot.currentIntakeMotorSpeed = Robot.currentIntakeMotorSpeed + 0.05;
-        Constants.intakeMotorController.set(intakeMotorSpeed);
+        Constants.intakeMotorController.set(Robot.currentIntakeMotorSpeed);
     }
 
     public void decreaseIntakeSpeed(double intakeMotorSpeed) {
-        intakeMotorSpeed = intakeMotorSpeed - 0.05;
-        Constants.intakeMotorController.set(intakeMotorSpeed);
+        Robot.currentIntakeMotorSpeed = Robot.currentIntakeMotorSpeed - 0.05;
+        Constants.intakeMotorController.set(Robot.currentIntakeMotorSpeed);
     }
 }
