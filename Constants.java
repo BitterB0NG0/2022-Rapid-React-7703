@@ -36,7 +36,6 @@ public class Constants {
 
     public static Joystick mainJoystick = new Joystick(0);
     static AnalogInput ultrasonic = new AnalogInput(0);
-
     static Accelerometer accelerometer = new BuiltInAccelerometer();
 
 

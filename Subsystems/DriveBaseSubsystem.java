@@ -22,7 +22,8 @@ public class DriveBaseSubsystem {
         Constants.driveBase.curvatureDrive(percentY, percentX, rotate);
     }
 
-    public void driveDistance(double centimeters) {
+    public void driveDistance(double centimeterDistance) {
 
     }
+
 } 
