@@ -6,24 +6,31 @@ import frc.robot.Robot;
 
 public class IntakeSubsystem extends SubsystemBase {
 
+    public double intakeMotorSpeed;
+
     /** Creates a new ExampleSubsystem. */
     public IntakeSubsystem() {}
 
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        if (Constants.runningIntake == true) {
+            activateIntake();
+        }
+
+        if (Constants.mainJoystick.getRawButtonPressed(4)) {
+            increaseIntakeSpeed();
+        }
+
+        if (Constants.mainJoystick.getRawButtonPressed(5)) {
+            decreaseIntakeSpeed();
+        }
     }
 
     @Override
     public void simulationPeriodic() {
         // This method will be called once per scheduler run during simulation
     }
-
-    double intakeMotorSpeed;
-
-    // public static void main(String[] args) {
-
-    // }
 
     public void activateIntake() {
         Constants.intakeMotorController.set(intakeMotorSpeed);
@@ -33,11 +40,11 @@ public class IntakeSubsystem extends SubsystemBase {
         Constants.intakeMotorController.set(0);
     }
 
-    public void increaseIntakeSpeed(double intakeMotorSpeed) {
+    public void increaseIntakeSpeed() {
         intakeMotorSpeed += 0.05;
     }
 
-    public void decreaseIntakeSpeed(double intakeMotorSpeed) {
+    public void decreaseIntakeSpeed() {
         intakeMotorSpeed -= 0.05;
     }
 }

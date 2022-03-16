@@ -57,9 +57,9 @@ public final class Constants {
     public static double initialIntakeMotorSpeed = 0;
 
     // Defining ShooterSubsystem Objects/Variables
-    public static WPI_VictorSPX floppaMotorController = new WPI_VictorSPX(4);
-    public static WPI_VictorSPX bingusMotorController = new WPI_VictorSPX(5);
-    public static WPI_VictorSPX quadingleMotorController = new WPI_VictorSPX(6);
+    public static WPI_VictorSPX floppaShooterMotorController = new WPI_VictorSPX(4);
+    public static WPI_VictorSPX bingusShooterMotorController = new WPI_VictorSPX(5);
+    public static WPI_VictorSPX quadingleLoadingMotorController = new WPI_VictorSPX(6);
 
     // Defining IntakeSubsystem Objects/Variables
     public static WPI_VictorSPX intakeMotorController = new WPI_VictorSPX(9);
@@ -70,4 +70,7 @@ public final class Constants {
     public static AnalogInput ultrasonic = new AnalogInput(0);
     public static Accelerometer accelerometer = new BuiltInAccelerometer();
     public static int cameraPorts = 0;
+
+    // logic, and yes I realize this is commiting blasphamy, but there is no other way to do it with how a Command base works
+    public static boolean runningIntake = false;
 }

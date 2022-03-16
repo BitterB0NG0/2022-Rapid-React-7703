@@ -18,6 +18,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.SensorSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.SpinIntakeMotor;
+import frc.robot.commands.spinLoaderMotor;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -60,9 +61,15 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     new JoystickButton(Constants.mainJoystick, 1)
-      .whenPressed(new SpinIntakeMotor(intakeSubsystem,1));
+      .whenPressed(new spinLoaderMotor(shooterSubsystem,1));
     new JoystickButton(Constants.mainJoystick, 1)
-    .whenReleased(new SpinIntakeMotor(intakeSubsystem,0));
+    .whenReleased(new spinLoaderMotor(shooterSubsystem,0));
+    
+    new JoystickButton(Constants.mainJoystick, 3)
+      .whenPressed(new SpinIntakeMotor(intakeSubsystem,1));
+    new JoystickButton(Constants.mainJoystick, 3)
+      .whenReleased(new SpinIntakeMotor(intakeSubsystem,0));
+
   }
 
   /**

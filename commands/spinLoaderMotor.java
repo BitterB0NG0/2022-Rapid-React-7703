@@ -4,22 +4,22 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
-public class SpinIntakeMotor extends CommandBase {
+public class spinLoaderMotor extends CommandBase {
     @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-    private final IntakeSubsystem m_subsystem;
+    private final ShooterSubsystem m_subsystem;
     private double motorPower;
     /**
      * Creates a new ExampleCommand.
      *
      * @param intakeSubsystem The subsystem used by this command.
      */
-    public SpinIntakeMotor(IntakeSubsystem intakeSubsystem, double power) {
-        m_subsystem = intakeSubsystem;
-        m_subsystem.intakeMotorSpeed = power;
+    public spinLoaderMotor(ShooterSubsystem shooterSubsystem, double power) {
+        m_subsystem = shooterSubsystem;
+        motorPower = power;
         // Use addRequirements() here to declare subsystem dependencies.
-        addRequirements(intakeSubsystem);
+        addRequirements(shooterSubsystem);
     }
 
     // Called when the command is initially scheduled.
@@ -29,7 +29,7 @@ public class SpinIntakeMotor extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        Constants.runningIntake = true;
+        Constants.quadingleLoadingMotorController.set(ControlMode.PercentOutput, motorPower);
     }
 
     // Called once the command ends or is interrupted.
