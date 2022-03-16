@@ -2,11 +2,17 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.filter.LinearFilter;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.RobotController;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class SensorSubsystem extends SubsystemBase {
+
+    public static AnalogInput ultrasonic = new AnalogInput(0);
+    public static Accelerometer accelerometer = new BuiltInAccelerometer();
 
     // Filitering Input Accelration
     LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
@@ -23,6 +29,8 @@ public class SensorSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        Constants.accel = accelerometerPeriodic();
+        Constants.distance = distanceSensorValuePeriodic();
     }
 
     @Override
@@ -36,8 +44,8 @@ public class SensorSubsystem extends SubsystemBase {
 
     public double[] accelerometerPeriodic() {
         // Gets the current accelerations in the X and Y directions
-        double xAccel = Constants.accelerometer.getX();
-        double yAccel = Constants.accelerometer.getY();
+        double xAccel = accelerometer.getX();
+        double yAccel = accelerometer.getY();
 
         // Calculates the jerk in the X and Y directions
         // Divides by .02 because default loop timing is 20ms
@@ -47,15 +55,15 @@ public class SensorSubsystem extends SubsystemBase {
         prevXAccel = xAccel;
         prevYAccel = yAccel;  
 
-        double filteredXAccel = xAccelFilter.calculate(Constants.accelerometer.getX());
-        double filteredYAccel = yAccelFilter.calculate(Constants.accelerometer.getY());
+        double filteredXAccel = xAccelFilter.calculate(accelerometer.getX());
+        double filteredYAccel = yAccelFilter.calculate(accelerometer.getY());
 
         double[] arr = {filteredXAccel, filteredYAccel};
         return arr;
     }
 
     public double distanceSensorValuePeriodic() {
-        double rawValue = Constants.ultrasonic.getValue();
+        double rawValue = ultrasonic.getValue();
         double voltage_scale_factor = 5/RobotController.getVoltage5V();
         double currentDistanceCentimeters = rawValue * voltage_scale_factor * 0.125;
         return currentDistanceCentimeters;

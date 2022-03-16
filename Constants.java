@@ -19,13 +19,10 @@ public final class Constants {
     These motor names SHOULD be changed depending on their purpose in the final code! */
 
     // Defining DriveBaseSubsystem Objects/Variables
-    public static WPI_VictorSPX frontLeftDriveMotorController = new WPI_VictorSPX(2);
-    public static WPI_VictorSPX backLeftDriveMotorController = new WPI_VictorSPX(3);
-    static MotorControllerGroup leftDriveMotorControllerGroup = new MotorControllerGroup(frontLeftDriveMotorController, backLeftDriveMotorController);
-    public static WPI_VictorSPX frontRightDriveMotorController = new WPI_VictorSPX(8);
-    public static WPI_VictorSPX backRightDriveMotorController = new WPI_VictorSPX(9);
-    static MotorControllerGroup rightDriveControllerGroup = new MotorControllerGroup(frontRightDriveMotorController, backRightDriveMotorController);
-    public static DifferentialDrive differentialDrive = new DifferentialDrive(leftDriveMotorControllerGroup, rightDriveControllerGroup);
+    public static int frontLeftDriveMotorControllerPort = 2;
+    public static int backLeftDriveMotorControllerPort = 3;
+    public static int frontRightDriveMotorControllerPort = 8;
+    public static int backRightDriveMotorControllerPort = 9;
 
     public static int driveModeIndex = 1; //"0" corresponds to arcadeDrive; "1", to curvatureDrive; and "2", to tankDrive
 
@@ -33,19 +30,21 @@ public final class Constants {
     public static double initialIntakeMotorSpeed = 0;
 
     // Defining ShooterSubsystem Objects/Variables
-    public static WPI_VictorSPX floppaShooterMotorController = new WPI_VictorSPX(4);
-    public static WPI_VictorSPX bingusShooterMotorController = new WPI_VictorSPX(5);
-    public static WPI_VictorSPX quadingleLoadingMotorController = new WPI_VictorSPX(6);
+    public static int floppaShooterMotorControllerPort = 4;
+    public static int bingusShooterMotorControllerPort = 5;
+    public static int quadingleLoadingMotorControllerPort = 6;
 
     // Defining IntakeSubsystem Objects/Variables
-    public static WPI_VictorSPX intakeMotorController = new WPI_VictorSPX(9);
+    public static int intakeMotorControllerPort = 9;
     
     // Defining Sensors
-    public static AnalogInput ultrasonic = new AnalogInput(0);
-    public static Accelerometer accelerometer = new BuiltInAccelerometer();
+    public static int ultrasonicPort = 0;
     public static int cameraPorts = 0;
-
     public static Joystick mainJoystick = new Joystick(0);
+    public static double[] accel;
+    public static double distance;
+
+
 
     // logic, and yes I realize this is commiting blasphamy, but there is no other way to do it with how a Command base works
     public static boolean runningIntake = false;

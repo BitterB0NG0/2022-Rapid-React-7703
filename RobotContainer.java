@@ -12,8 +12,6 @@ import frc.robot.subsystems.DriveBaseSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.SensorSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.SpinIntakeMotor;
-import frc.robot.commands.spinLoaderMotor;
 
 // "RobotContainer" holds subsystem, command, and configuration declerations
 public class RobotContainer {
@@ -41,15 +39,36 @@ public class RobotContainer {
 
   // "configureButtonBindings()" defines button-command mapping
   private void configureButtonBindings() {
-    new JoystickButton(Constants.mainJoystick, 1)
-      .whenPressed(new spinLoaderMotor(shooterSubsystem,1));
-    new JoystickButton(Constants.mainJoystick, 1)
-    .whenReleased(new spinLoaderMotor(shooterSubsystem,0));
-    
+    // Intake Subsystem
+    // button 3
+    new JoystickButton(Constants.mainJoystick,3)
+      .whenPressed(new RunCommand(
+        () -> intakeSubsystem.activateIntake(), intakeSubsystem) 
+      );
     new JoystickButton(Constants.mainJoystick, 3)
-      .whenPressed(new SpinIntakeMotor(intakeSubsystem,1));
-    new JoystickButton(Constants.mainJoystick, 3)
-      .whenReleased(new SpinIntakeMotor(intakeSubsystem,0));
+      .whenReleased(new RunCommand(
+        () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
+      );
+    // button 4
+    new JoystickButton(Constants.mainJoystick, 4)
+      .whenPressed(new RunCommand(
+        () -> intakeSubsystem.increaseIntakeSpeed(), intakeSubsystem)
+      );
+    // button 5
+    new JoystickButton(Constants.mainJoystick, 5)
+      .whenPressed(new RunCommand(
+        () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
+      );
+
+
+    // Shooter Subsystem
+    // button 1
+    new JoystickButton(Constants.mainJoystick, 1)
+      .whenPressed(new RunCommand(
+        () -> shooterSubsystem.activateShootingFlyWheels(), shooterSubsystem));
+    new JoystickButton(Constants.mainJoystick, 1)
+      .whenPressed(new RunCommand(
+        () -> shooterSubsystem.deactivateShootingFlyWheels(), shooterSubsystem));
 
   }
 

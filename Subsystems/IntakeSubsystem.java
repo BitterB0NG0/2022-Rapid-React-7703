@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Robot;
@@ -7,6 +9,9 @@ import frc.robot.Robot;
 public class IntakeSubsystem extends SubsystemBase {
 
     public double intakeMotorSpeed;
+    public boolean intakeOn;
+
+    public static WPI_VictorSPX intakeMotorController = new WPI_VictorSPX(Constants.intakeMotorControllerPort);
 
     /** Creates a new ExampleSubsystem. */
     public IntakeSubsystem() {}
@@ -14,8 +19,10 @@ public class IntakeSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        if (Constants.runningIntake == true) {
-            activateIntake();
+        if (intakeOn == true) {
+            intakeMotorController.set(intakeMotorSpeed);
+        } else {
+            intakeMotorController.set(0);
         }
 
         if (Constants.mainJoystick.getRawButtonPressed(4)) {
@@ -33,11 +40,11 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public void activateIntake() {
-        Constants.intakeMotorController.set(intakeMotorSpeed);
+        intakeOn = true;
     }
 
     public void deactivateIntake() {
-        Constants.intakeMotorController.set(0);
+        intakeOn = false;
     }
 
     public void increaseIntakeSpeed() {
