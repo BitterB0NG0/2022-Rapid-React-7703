@@ -31,13 +31,8 @@ public class Robot extends TimedRobot {
   }
 
   /**
-<<<<<<< Updated upstream
-   * This function is called every robot packet, no matter the mode. Use this for items like
-   * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
-=======
    * This function is called every 20 ms, no matter the mode. Use this for items like diagnostics
    * that you want ran during disabled, autonomous, teleoperated and test.
->>>>>>> Stashed changes
    *
    * <p>This runs after the mode specific periodic functions, but before LiveWindow and
    * SmartDashboard integrated updating.
@@ -54,39 +49,6 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {}
-<<<<<<< Updated upstream
-
-  @Override
-  public void disabledPeriodic() {}
-
-  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
-  @Override
-  public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
-    }
-  }
-
-  /** This function is called periodically during autonomous. */
-  @Override
-  public void autonomousPeriodic() {}
-
-  @Override
-  public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
-  }
-
-  /** This function is called periodically during operator control. */
-=======
 
   @Override
   public void disabledPeriodic() {}
@@ -127,26 +89,7 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().cancelAll();
   }
 
-  /** This function is called periodically during test mode. */
->>>>>>> Stashed changes
-  @Override
-  public void teleopPeriodic() {}
-
-<<<<<<< Updated upstream
-=======
-  /** This function is called once when the robot is first started up. */
->>>>>>> Stashed changes
-  @Override
-  public void testInit() {
-    // Cancels all running commands at the start of test mode.
-    CommandScheduler.getInstance().cancelAll();
-  }
-
-<<<<<<< Updated upstream
-  /** This function is called periodically during test mode. */
-=======
   /** This function is called periodically whilst in simulation. */
->>>>>>> Stashed changes
   @Override
   public void testPeriodic() {}
 }
