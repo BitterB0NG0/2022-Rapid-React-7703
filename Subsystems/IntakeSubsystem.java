@@ -4,52 +4,58 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class IntakeSubsystem extends SubsystemBase {
-
+    // Stating IntakeSubsystem Variables
     public double intakeMotorSpeed;
     public boolean intakeOn;
 
+    // Stating and Defining IntakeSubsystem Objects
     public static WPI_VictorSPX intakeMotorController = new WPI_VictorSPX(Constants.intakeMotorControllerPort);
 
-    /** Creates a new ExampleSubsystem. */
+    // "IntakeSubsystem()" creates a IntakeSubsystem
     public IntakeSubsystem() {}
 
+    // "periodic()" is called periodically, once per scheduler run
     @Override
     public void periodic() {
-        // This method will be called once per scheduler run
         if (intakeOn == true) {
             intakeMotorController.set(intakeMotorSpeed);
         } else {
             intakeMotorController.set(0);
         }
 
-        if (Constants.mainJoystick.getRawButtonPressed(4)) {
+        if (RobotContainer.mainJoystick.getRawButtonPressed(4)) {
             increaseIntakeSpeed();
         }
 
-        if (Constants.mainJoystick.getRawButtonPressed(5)) {
+        if (RobotContainer.mainJoystick.getRawButtonPressed(5)) {
             decreaseIntakeSpeed();
         }
     }
 
+    // "simulationPeriodic()" is called periodically, once per scheduler run, during simulation mode
     @Override
     public void simulationPeriodic() {
-        // This method will be called once per scheduler run during simulation
     }
 
+    // "activateIntake()" commands the IntakeSubsystem to activate
     public void activateIntake() {
         intakeOn = true;
     }
 
+    // "deactivateIntake()" comamnds the IntakeSubsystem to deactivate
     public void deactivateIntake() {
         intakeOn = false;
     }
 
+    // "increaseIntakeSpeed()" commands the IntakeSubsystem to increase in rotation speed
     public void increaseIntakeSpeed() {
         intakeMotorSpeed += 0.05;
     }
 
+    // "decreaseIntakeSpeed()" commands theIntakeSubsystem to decrease in rotation speed
     public void decreaseIntakeSpeed() {
         intakeMotorSpeed -= 0.05;
     }

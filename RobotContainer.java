@@ -22,7 +22,7 @@ public class RobotContainer {
   private final SensorSubsystem sensorSubsystem = new SensorSubsystem();
 
   // Declaring Instances of Input-Output Devices
-  public final Joystick mainJoystick = new Joystick(0);
+  public final static Joystick mainJoystick = new Joystick(Constants.mainjoystickPort);
   public final JoystickButton trigger = new JoystickButton(mainJoystick, 1);
   public final XboxController xboxController = new XboxController(0);
 
@@ -33,7 +33,7 @@ public class RobotContainer {
 
     // Configure Default Commands
     driveBaseSubsystem.setDefaultCommand(new RunCommand(
-      () -> DriveBaseSubsystem.drivePercentCurvature(mainJoystick.getRawAxis(0), mainJoystick.getRawAxis(1), true), driveBaseSubsystem) 
+      () -> DriveBaseSubsystem.drivePercent(mainJoystick.getRawAxis(0), mainJoystick.getRawAxis(1), true), driveBaseSubsystem) 
      ); // A split-stick curvature drive command, with forward/backward controlled by the left hand, and turning controlled by the right.
   }
 
@@ -41,21 +41,21 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Intake Subsystem
     // Joystick Button 3
-    new JoystickButton(Constants.mainJoystick,3)
+    new JoystickButton(mainJoystick,3)
       .whenPressed(new RunCommand(
         () -> intakeSubsystem.activateIntake(), intakeSubsystem) 
       );
-    new JoystickButton(Constants.mainJoystick, 3)
+    new JoystickButton(mainJoystick, 3)
       .whenReleased(new RunCommand(
         () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
       );
     // Joystick Button 4
-    new JoystickButton(Constants.mainJoystick, 4)
+    new JoystickButton(mainJoystick, 4)
       .whenPressed(new RunCommand(
         () -> intakeSubsystem.increaseIntakeSpeed(), intakeSubsystem)
       );
     // Jyystick Button 5
-    new JoystickButton(Constants.mainJoystick, 5)
+    new JoystickButton(mainJoystick, 5)
       .whenPressed(new RunCommand(
         () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
       );
@@ -63,10 +63,10 @@ public class RobotContainer {
 
     // Shooter Subsystem
     // button 1
-    new JoystickButton(Constants.mainJoystick, 1)
+    new JoystickButton(mainJoystick, 1)
       .whenPressed(new RunCommand(
         () -> shooterSubsystem.activateShootingFlyWheels(), shooterSubsystem));
-    new JoystickButton(Constants.mainJoystick, 1)
+    new JoystickButton(mainJoystick, 1)
       .whenPressed(new RunCommand(
         () -> shooterSubsystem.deactivateShootingFlyWheels(), shooterSubsystem));
 

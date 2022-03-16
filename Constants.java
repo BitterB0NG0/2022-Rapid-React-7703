@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 // "Constants" holds robot-wide numerical or boolean constants
 public final class Constants {
     /* The CAN IDs are set up from first device to last, even if the said last device is not powered up, or even used by the code (I'm looking at you PDP).
@@ -27,8 +25,8 @@ public final class Constants {
     // Defining Sensors Ports
     public static int ultrasonicPort = 0;
     public static int cameraPorts = 0;
-    public static Joystick mainJoystick = new Joystick(0);
-    
+    public static int mainjoystickPort = 0;
+
     // logic, and yes I realize this is commiting blasphamy, but there is no other way to do it with how a Command base works
     public static double[] accel;
     public static double distance;
