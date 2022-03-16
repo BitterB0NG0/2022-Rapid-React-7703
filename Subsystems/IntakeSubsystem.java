@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -21,9 +23,9 @@ public class IntakeSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         if (intakeOn == true) {
-            intakeMotorController.set(intakeMotorSpeed);
+            intakeMotorController.set(ControlMode.PercentOutput, intakeMotorSpeed);
         } else {
-            intakeMotorController.set(0);
+            intakeMotorController.set(ControlMode.PercentOutput, 0);
         }
 
         if (RobotContainer.mainJoystick.getRawButtonPressed(4)) {
@@ -52,11 +54,19 @@ public class IntakeSubsystem extends SubsystemBase {
 
     // "increaseIntakeSpeed()" commands the IntakeSubsystem to increase in rotation speed
     public void increaseIntakeSpeed() {
-        intakeMotorSpeed += 0.05;
+        // intakeMotorSpeed =  Math.round(intakeMotorSpeed * 100) / 100;
+        System.out.println(intakeMotorSpeed);
+        if (intakeMotorSpeed + .1 < 1) {
+            intakeMotorSpeed += 0.1;
+        }
     }
 
     // "decreaseIntakeSpeed()" commands theIntakeSubsystem to decrease in rotation speed
     public void decreaseIntakeSpeed() {
-        intakeMotorSpeed -= 0.05;
+        // intakeMotorSpeed =  Math.round(intakeMotorSpeed * 100) / 100;
+        System.out.println(intakeMotorSpeed);
+        if (intakeMotorSpeed - .1 > -1) {
+            intakeMotorSpeed -= 0.1;
+        }
     }
 }

@@ -17,7 +17,7 @@ public final class Constants {
     public static int floppaShooterMotorControllerPort = 4;
     public static int bingusShooterMotorControllerPort = 5;
     public static int quadingleLoadingMotorControllerPort = 6;
-    public static int intakeMotorControllerPort = 1;
+    public static int intakeMotorControllerPort = 7;
 
     // Defining IntakeSubsystem Objects/Variables
     public static double initialIntakeMotorSpeed = 0;

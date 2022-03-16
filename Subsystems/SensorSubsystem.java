@@ -31,6 +31,10 @@ public class SensorSubsystem extends SubsystemBase {
         // This method will be called once per scheduler run
         Constants.accel = accelerometerPeriodic();
         Constants.distance = distanceSensorValuePeriodic();
+
+        // System.out.println(Constants.distance);
+        
+
     }
 
     @Override

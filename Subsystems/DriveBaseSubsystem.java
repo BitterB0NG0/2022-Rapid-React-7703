@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -40,10 +41,14 @@ public class DriveBaseSubsystem extends SubsystemBase {
 
     // "moveDistance()" commands the DriveBaseSubsystem to move a spesific distance in centimeters
     public void moveDistance(double finalPosition, double currentPosition) {
+        double power = 0.0004 * (finalPosition - currentPosition) * (finalPosition - currentPosition);
+        if (power > 1) {
+            power = 1;            
+        }
         if (finalPosition > currentPosition) {
-            leftDriveMotorControllerGroup.set(0.0004 * (finalPosition - currentPosition) * (finalPosition - currentPosition));
+            leftDriveMotorControllerGroup.set(power);
         } else {
-            leftDriveMotorControllerGroup.set(-0.0004 * (finalPosition - currentPosition) * (finalPosition - currentPosition));
+            leftDriveMotorControllerGroup.set(power);
         }
     }
 
