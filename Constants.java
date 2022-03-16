@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.BuiltInAccelerometer;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -43,6 +44,8 @@ public final class Constants {
     public static AnalogInput ultrasonic = new AnalogInput(0);
     public static Accelerometer accelerometer = new BuiltInAccelerometer();
     public static int cameraPorts = 0;
+
+    public static Joystick mainJoystick = new Joystick(0);
 
     // logic, and yes I realize this is commiting blasphamy, but there is no other way to do it with how a Command base works
     public static boolean runningIntake = false;
