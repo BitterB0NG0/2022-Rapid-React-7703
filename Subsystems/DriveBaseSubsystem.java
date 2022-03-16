@@ -7,10 +7,11 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class DriveBaseSubsystem extends SubsystemBase {
     // Stating DriveBaseSubsystem Variables
-    boolean movePosition = false;
+    boolean moveByPosition = false;
 
     // Stating and Defining DriveBaseSubsystem Objects
     public static WPI_VictorSPX frontLeftDriveMotorController = new WPI_VictorSPX(Constants.frontLeftDriveMotorControllerPort);
@@ -29,8 +30,10 @@ public class DriveBaseSubsystem extends SubsystemBase {
     // "periodic()" is called periodically, once per scheduler run
     @Override
     public void periodic() {
-        if (movePosition = true) {
+        if (moveByPosition = true) {
             moveDistance(50, Constants.distance);
+        } else {
+            movePercent(RobotContainer.mainJoystick.getRawAxis(0),RobotContainer.mainJoystick.getRawAxis(1), true);
         }
     }
 
@@ -53,7 +56,7 @@ public class DriveBaseSubsystem extends SubsystemBase {
     }
 
     // "drivePereentCurvature()" commands the DriveBaseSusbsystem to move under spesific power in percentages (-1,1)
-    public static void drivePercent(double xSpeed, double zRotation, boolean allowTurnInPlace) {
+    public static void movePercent(double xSpeed, double zRotation, boolean allowTurnInPlace) {
         differentialDrive.curvatureDrive(xSpeed, zRotation, allowTurnInPlace);
     }
 }
