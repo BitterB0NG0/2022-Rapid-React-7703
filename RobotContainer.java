@@ -40,7 +40,7 @@ public class RobotContainer {
   // "configureButtonBindings()" defines button-command mapping
   private void configureButtonBindings() {
     // Intake Subsystem
-    // button 3
+    // Joystick Button 3
     new JoystickButton(Constants.mainJoystick,3)
       .whenPressed(new RunCommand(
         () -> intakeSubsystem.activateIntake(), intakeSubsystem) 
@@ -49,12 +49,12 @@ public class RobotContainer {
       .whenReleased(new RunCommand(
         () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
       );
-    // button 4
+    // Joystick Button 4
     new JoystickButton(Constants.mainJoystick, 4)
       .whenPressed(new RunCommand(
         () -> intakeSubsystem.increaseIntakeSpeed(), intakeSubsystem)
       );
-    // button 5
+    // Jyystick Button 5
     new JoystickButton(Constants.mainJoystick, 5)
       .whenPressed(new RunCommand(
         () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
