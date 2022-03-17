@@ -16,6 +16,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public static WPI_VictorSPX quadingleLoadingMotorController = new WPI_VictorSPX(Constants.quadingleLoadingMotorControllerPort);
 
     public static boolean shooterFlywheelActive;
+    public static boolean loadWheelActive;
 
     // "ShooterSubsystem()" creates a ShooterSubsystem
     public ShooterSubsystem() {}
@@ -25,6 +26,10 @@ public class ShooterSubsystem extends SubsystemBase {
     public void periodic() {
         if (shooterFlywheelActive) {
             floppaShooterMotorController.set(ControlMode.PercentOutput, 1);
+            bingusShooterMotorController.set(ControlMode.PercentOutput, 1);
+        }
+        if (loadWheelActive) {
+            quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.loaderMotorPower);
         }
     }
 
@@ -45,7 +50,13 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     // "activateShooter()" commands the shooter system to shoot
-    public void activateShooter(double power) {
+    public void activateShooter() {
+        loadWheelActive = true;
+    }
+
+    // "deactivateShooter()" commands the shooter system to shoot
+    public void deactivateShooter() {
+        loadWheelActive = false;
     }
 
     // "activateShootingFlyWheels()" commands the shooting flywheels to spool up to the required veolcities

@@ -44,6 +44,7 @@ public final class Constants {
     public static double summarizeDragCoefficient = 0.5 * dragCoefficentOfBall * densityOfAir * crossSectionalAreaOfBall;
     public static double angleOfShooter = 3.14159263538979323/12; // Angle of Shooter in Radians
     public static Color detectedColor;
+    public static double loaderMotorPower = 1;
 
     public static I2C.Port i2cPort = I2C.Port.kOnboard;
 }
