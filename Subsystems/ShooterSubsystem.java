@@ -32,7 +32,7 @@ public class ShooterSubsystem extends SubsystemBase {
             bingusShooterMotorController.set(ControlMode.PercentOutput, Constants.bingusPower);
         }
         if (loadWheelActive) {
-            quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.loaderMotorPower);
+            quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.quadinglePower);
         }
 
         if (RobotContainer.mainJoystick.getRawButtonPressed(9)) {
@@ -58,10 +58,6 @@ public class ShooterSubsystem extends SubsystemBase {
             //Constants.floppaPower = ;
             //Constants.bingusPower =;
         }
-
-
-       // double flyWheelSpeeds = distanceToTarget * Constants.gravitationalFieldStrengthOnBall / (Constants.terminalVelocityOfBall * Math.cos(Constants.angleOfShooter));
-       // return flyWheelSpeeds;
     }
 
     // "loadShooter()" commands the loading wheel to rotate slightly and load the shooting mechanism
@@ -80,7 +76,7 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     // "activateShootingFlyWheels()" commands the shooting flywheels to spool up to the required veolcities
-    public void activateShootingFlyWheels(double power) {
+    public void activateShootingFlyWheels() {
         shooterFlywheelActive = true;
     }
 

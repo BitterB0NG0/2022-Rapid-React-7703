@@ -36,7 +36,7 @@ public class SensorSubsystem extends SubsystemBase {
     private final Color kRedTarget = new Color(0.561, 0.232, 0.114);
     private final Color kYellowTarget = new Color(0.361, 0.524, 0.113);
 
-    /** Creates a new SensorSubsystem. */
+    // "SensorSubsystem()" creates a SensorSubsystem
     public SensorSubsystem() {
         m_colorMatcher.addColorMatch(kBlueTarget);
         m_colorMatcher.addColorMatch(kGreenTarget);
@@ -44,10 +44,11 @@ public class SensorSubsystem extends SubsystemBase {
         m_colorMatcher.addColorMatch(kYellowTarget);   
     }
 
+    // "periodic()" is called periodically, once per scheduler run
     @Override
     public void periodic() {
+        // Defining & Declaring Variables
         Constants.detectedColor = m_colorSensor.getColor();
-
         String colorString;
         ColorMatchResult match = m_colorMatcher.matchClosestColor(Constants.detectedColor);
 

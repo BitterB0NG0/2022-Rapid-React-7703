@@ -67,7 +67,7 @@ public class DriveBaseSubsystem extends SubsystemBase {
     }
 
     // "drivePereentCurvature()" commands the DriveBaseSusbsystem to move under spesific power in percentages (-1,1)
-    public static void movePercent(double xSpeed, double zRotation, boolean allowTurnInPlace) {
+    public void movePercent(double xSpeed, double zRotation, boolean allowTurnInPlace) {
         differentialDrive.curvatureDrive(xSpeed, zRotation, allowTurnInPlace);
     }
 

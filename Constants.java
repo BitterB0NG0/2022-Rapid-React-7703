@@ -38,19 +38,9 @@ public final class Constants {
     public static double distance;
 
     // Defining ShooterSystemVariables
-    public static double densityOfAir = 1.2; // Density in Kilograms per Meters Cubed
-    public static double gravitationalFieldStrengthOnBall = 9.80665; // Gravitational Field Strength in Newtons per Kilogram
-    public static double massOfBall = .27; // Mass in Kilograms
-    public static double dragCoefficentOfBall = 0.5; // Drag Coefficent Unitless
-    public static double crossSectionalAreaOfBall = .7540; // Cross Sectional Area in Meters Squared
-    public static double terminalVelocityOfBall = Math.sqrt(2 * massOfBall * gravitationalFieldStrengthOnBall / (densityOfAir * dragCoefficentOfBall * crossSectionalAreaOfBall)); // Terminal Velocity in Meters per Second
-    public static double summarizeDragCoefficient = 0.5 * dragCoefficentOfBall * densityOfAir * crossSectionalAreaOfBall;
-    public static double angleOfShooter = 3.14159263538979323/12; // Angle of Shooter in Radians
-
     public static Color detectedColor;
 
-    public static double loaderMotorPower = 1;
-
+    public static double quadinglePower = 1;
     public static double floppaPower;
     public static double bingusPower;
 
