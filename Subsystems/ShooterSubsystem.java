@@ -18,6 +18,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public static boolean shooterFlywheelActive;
     public static boolean loadWheelActive;
+    public static boolean manualPowerSetting = true;
 
     // "ShooterSubsystem()" creates a ShooterSubsystem
     public ShooterSubsystem() {}
@@ -26,16 +27,20 @@ public class ShooterSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         if (shooterFlywheelActive) {
-            floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.shooterFlywheelPower);
-            bingusShooterMotorController.set(ControlMode.PercentOutput, Constants.shooterFlywheelPower);
+            setFlyWheelSpeeds(RobotContainer.mainJoystick.getRawAxis(2));
+            floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.floppaPower);
+            bingusShooterMotorController.set(ControlMode.PercentOutput, Constants.bingusPower);
         }
         if (loadWheelActive) {
             quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.loaderMotorPower);
         }
-        if (RobotContainer.mainJoystick.getRawButtonPressed(1)) {
-            loadWheelActive = true;
-        } else if (RobotContainer.mainJoystick.getRawButtonReleased(1)) {
-            loadWheelActive = false;
+
+        if (RobotContainer.mainJoystick.getRawButtonPressed(9)) {
+            if (manualPowerSetting == false) {
+                manualPowerSetting = true;
+            } else {
+                manualPowerSetting = false;
+            }
         }
     }
 
@@ -44,10 +49,19 @@ public class ShooterSubsystem extends SubsystemBase {
     public void simulationPeriodic() {
     }
 
-    // "calculateFlyWheelSpeeds()" calculates the velocity requirements for hitting the target
-    public double calculateFlyWheelSpeeds(double distanceToTarget) {
-        double flyWheelSpeeds = distanceToTarget * Constants.gravitationalFieldStrengthOnBall / (Constants.terminalVelocityOfBall * Math.cos(Constants.angleOfShooter));
-        return flyWheelSpeeds;
+    // "setFlyWheelSpeeds()" sets the power of the shootingFlyWheelsSpeeds
+    public void setFlyWheelSpeeds(double powerSetting) {
+        if (manualPowerSetting = true) {
+            Constants.floppaPower = powerSetting;
+            Constants.bingusPower = powerSetting;
+        } else {
+            //Constants.floppaPower = ;
+            //Constants.bingusPower =;
+        }
+
+
+       // double flyWheelSpeeds = distanceToTarget * Constants.gravitationalFieldStrengthOnBall / (Constants.terminalVelocityOfBall * Math.cos(Constants.angleOfShooter));
+       // return flyWheelSpeeds;
     }
 
     // "loadShooter()" commands the loading wheel to rotate slightly and load the shooting mechanism

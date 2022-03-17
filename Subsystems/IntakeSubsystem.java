@@ -12,6 +12,10 @@ public class IntakeSubsystem extends SubsystemBase {
     // Stating IntakeSubsystem Variables
     public double intakeMotorSpeed;
     public boolean intakeOn;
+    public boolean deployingIntake;
+    public int counter = 0;
+    public boolean moveForward = false;
+    public int startedIntake = 0;
 
     // Stating and Defining IntakeSubsystem Objects
     public static WPI_VictorSPX intakeMotorController = new WPI_VictorSPX(Constants.intakeMotorControllerPort);
@@ -22,6 +26,28 @@ public class IntakeSubsystem extends SubsystemBase {
     // "periodic()" is called periodically, once per scheduler run
     @Override
     public void periodic() {
+        counter++;
+
+        if (counter % 5 == 0) {
+            if (moveForward == true) {
+                moveForward = false;
+            } else {
+                moveForward = true;
+            }
+        }
+         
+        if (deployingIntake == true) {
+            if (moveForward) {
+                RobotContainer.driveBaseSubsystem.movePercent(1, 0, false);
+            } else {
+                RobotContainer.driveBaseSubsystem.movePercent(-1, 0, false);
+            }
+        }
+
+        if (counter == startedIntake + Constants.intakeDeployTime) {
+            deployingIntake = false;
+        }
+        
         if (intakeOn == true) {
             intakeMotorController.set(ControlMode.PercentOutput, intakeMotorSpeed);
         } else {
@@ -56,19 +82,25 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeOn = false;
     }
 
-    // "increaseIntakeSpeed()" commands the IntakeSubsystem to increase in rotation speed
+    // "increaseIntakeSpeed()" commands the IntakeSubsystem to increase its rotation speed
     public void increaseIntakeSpeed() {
-        // intakeMotorSpeed =  Math.round(intakeMotorSpeed * 100) / 100;
+        // intakeMotorSpeed = Math.round(intakeMotorSpeed * 100) / 100;
         if (intakeMotorSpeed + .1 < 1) {
             intakeMotorSpeed += 0.1;
         }
     }
 
-    // "decreaseIntakeSpeed()" commands theIntakeSubsystem to decrease in rotation speed
+    // "decreaseIntakeSpeed()" commands theIntakeSubsystem to decrease its rotation speed
     public void decreaseIntakeSpeed() {
-        // intakeMotorSpeed =  Math.round(intakeMotorSpeed * 100) / 100;
+        // intakeMotorSpeed = Math.round(intakeMotorSpeed * 100) / 100;
         if (intakeMotorSpeed - .1 > -1) {
             intakeMotorSpeed -= 0.1;
         }
+    }
+
+    // "deployIntake()" commands the IntakeSubsystem to deploy
+    public void deployIntake() {
+        deployingIntake = true;
+        startedIntake = counter;
     }
 }

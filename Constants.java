@@ -26,6 +26,7 @@ public final class Constants {
 
     // Defining IntakeSubsystem Variables
     public static double initialIntakeMotorSpeed = 0;
+    public static int intakeDeployTime = 100; // Deploy Time in Number of 20ms within the deploy interval
 
     // Defining Sensors Ports
     public static int ultrasonicPort = 0;
@@ -45,9 +46,13 @@ public final class Constants {
     public static double terminalVelocityOfBall = Math.sqrt(2 * massOfBall * gravitationalFieldStrengthOnBall / (densityOfAir * dragCoefficentOfBall * crossSectionalAreaOfBall)); // Terminal Velocity in Meters per Second
     public static double summarizeDragCoefficient = 0.5 * dragCoefficentOfBall * densityOfAir * crossSectionalAreaOfBall;
     public static double angleOfShooter = 3.14159263538979323/12; // Angle of Shooter in Radians
+
     public static Color detectedColor;
+
     public static double loaderMotorPower = 1;
-    public static double shooterFlywheelPower = 1;
+
+    public static double floppaPower;
+    public static double bingusPower;
 
     // public static String driveMode = "curvature";
 

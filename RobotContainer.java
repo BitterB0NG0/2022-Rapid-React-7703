@@ -16,7 +16,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 // "RobotContainer" holds subsystem, command, and configuration declerations
 public class RobotContainer {
   // Declarining Instances of Subsystems
-  private final DriveBaseSubsystem driveBaseSubsystem = new DriveBaseSubsystem();
+  public final static DriveBaseSubsystem driveBaseSubsystem = new DriveBaseSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final SensorSubsystem sensorSubsystem = new SensorSubsystem();
@@ -40,7 +40,6 @@ public class RobotContainer {
   // "configureButtonBindings()" defines button-command mapping
   private void configureButtonBindings() {
     // Intake Subsystem
-    // Joystick Button 3
     new JoystickButton(mainJoystick,3)
       .whenPressed(new RunCommand(
         () -> intakeSubsystem.activateIntake(), intakeSubsystem) 
@@ -49,17 +48,22 @@ public class RobotContainer {
       .whenReleased(new RunCommand(
         () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
       );
-
+    new JoystickButton(mainJoystick, 8)
+      .whenReleased(new RunCommand(
+        () -> intakeSubsystem.deployIntake(), intakeSubsystem)
+      );
 
     // Shooter Subsystem
-    // button 1
     new JoystickButton(mainJoystick, 1)
       .whenPressed(new RunCommand(
         () -> shooterSubsystem.activateShooter(), shooterSubsystem));
     new JoystickButton(mainJoystick, 1)
       .whenPressed(new RunCommand(
         () -> shooterSubsystem.deactivateShooter(), shooterSubsystem));
-
+    // new JoystickButton(mainJoystick, 9
+    //   .whenPressed(new RunCommand(
+    //     () -> shooterSubsystem.loadShooter(), shooterSubsystem));
+    
   }
 
   // "getAuthonomousCommand()" passes the autonomous command to the main "Robot.java" class
