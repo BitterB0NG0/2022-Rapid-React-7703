@@ -33,7 +33,7 @@ public class RobotContainer {
 
     // Configure Default Commands
     driveBaseSubsystem.setDefaultCommand(new RunCommand(
-      () -> DriveBaseSubsystem.drivePercent(mainJoystick.getRawAxis(0), mainJoystick.getRawAxis(1), true), driveBaseSubsystem) 
+      () -> DriveBaseSubsystem.movePercent(mainJoystick.getRawAxis(0), mainJoystick.getRawAxis(1), true), driveBaseSubsystem) 
      ); // A split-stick curvature drive command, with forward/backward controlled by the left hand, and turning controlled by the right.
   }
 

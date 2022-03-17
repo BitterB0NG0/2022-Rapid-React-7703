@@ -55,7 +55,6 @@ public class IntakeSubsystem extends SubsystemBase {
     // "increaseIntakeSpeed()" commands the IntakeSubsystem to increase in rotation speed
     public void increaseIntakeSpeed() {
         // intakeMotorSpeed =  Math.round(intakeMotorSpeed * 100) / 100;
-        System.out.println(intakeMotorSpeed);
         if (intakeMotorSpeed + .1 < 1) {
             intakeMotorSpeed += 0.1;
         }
@@ -64,7 +63,6 @@ public class IntakeSubsystem extends SubsystemBase {
     // "decreaseIntakeSpeed()" commands theIntakeSubsystem to decrease in rotation speed
     public void decreaseIntakeSpeed() {
         // intakeMotorSpeed =  Math.round(intakeMotorSpeed * 100) / 100;
-        System.out.println(intakeMotorSpeed);
         if (intakeMotorSpeed - .1 > -1) {
             intakeMotorSpeed -= 0.1;
         }
