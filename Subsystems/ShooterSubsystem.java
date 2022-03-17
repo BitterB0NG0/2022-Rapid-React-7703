@@ -27,18 +27,21 @@ public class ShooterSubsystem extends SubsystemBase {
     // "periodic()" is called periodically, once per scheduler run
     @Override
     public void periodic() {
+
         if (shooterFlywheelActive) {
-            setFlyWheelSpeeds(RobotContainer.mainJoystick.getRawAxis(2));
+            setFlyWheelSpeeds((RobotContainer.mainJoystick.getRawAxis(2) -
+             1) / 2);
             floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.floppaPower);
-            bingusShooterMotorController.set(ControlMode.PercentOutput, Constants.bingusPower);
+            bingusShooterMotorController.set(ControlMode.PercentOutput, -Constants.bingusPower);
         }
         if (loadWheelActive == true) {
             quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.quadinglePower);
         }
 
-        if (RobotContainer.mainJoystick.getRawButtonReleased(1)) {
+        if (RobotContainer.mainJoystick.getRawButtonPressed(1)) {
             loadWheelActive = true;
-        } else {
+        } 
+        if (RobotContainer.mainJoystick.getRawButtonReleased(1)) {
             loadWheelActive = false;
         }
 
