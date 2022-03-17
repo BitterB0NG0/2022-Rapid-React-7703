@@ -13,14 +13,16 @@ public final class Constants {
     These motor names SHOULD be changed depending on their purpose in the final code! */
 
     // Defining Port Numbers or CAN Order for MotorControllers
-    public static int frontLeftDriveMotorControllerPort = 2;
-    public static int backLeftDriveMotorControllerPort = 3;
-    public static int frontRightDriveMotorControllerPort = 8;
-    public static int backRightDriveMotorControllerPort = 9;
-    public static int floppaShooterMotorControllerPort = 4;
-    public static int bingusShooterMotorControllerPort = 5;
+    public static int frontLeftDriveMotorControllerPort = 4;
+    public static int backLeftDriveMotorControllerPort = 5;
+    public static int frontRightDriveMotorControllerPort = 6;
+    public static int backRightDriveMotorControllerPort = 7;
+
+    public static int floppaShooterMotorControllerPort = 9;
+    public static int bingusShooterMotorControllerPort = 2;
     public static int quadingleLoadingMotorControllerPort = 6;
-    public static int intakeMotorControllerPort = 7;
+    
+    public static int intakeMotorControllerPort = 8;
 
     // Defining IntakeSubsystem Variables
     public static double initialIntakeMotorSpeed = 0;
@@ -45,6 +47,9 @@ public final class Constants {
     public static double angleOfShooter = 3.14159263538979323/12; // Angle of Shooter in Radians
     public static Color detectedColor;
     public static double loaderMotorPower = 1;
+    public static double shooterFlywheelPower = 1;
+
+    // public static String driveMode = "curvature";
 
     public static I2C.Port i2cPort = I2C.Port.kOnboard;
 }

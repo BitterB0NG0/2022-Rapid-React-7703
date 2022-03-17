@@ -31,10 +31,10 @@ public class RobotContainer {
     // Call "configureButtonBindings()" method
     configureButtonBindings();
 
-    // Configure Default Commands
-    driveBaseSubsystem.setDefaultCommand(new RunCommand(
-      () -> DriveBaseSubsystem.movePercent(mainJoystick.getRawAxis(0), mainJoystick.getRawAxis(1), true), driveBaseSubsystem) 
-     ); // A split-stick curvature drive command, with forward/backward controlled by the left hand, and turning controlled by the right.
+    // // Configure Default Commands
+    // driveBaseSubsystem.setDefaultCommand(new RunCommand(
+    //   () -> DriveBaseSubsystem.movePercent(mainJoystick.getRawAxis(0), mainJoystick.getRawAxis(1), true), driveBaseSubsystem) 
+    //  ); // A split-stick curvature drive command, with forward/backward controlled by the left hand, and turning controlled by the right.
   }
 
   // "configureButtonBindings()" defines button-command mapping

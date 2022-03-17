@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class ShooterSubsystem extends SubsystemBase { 
     // Stating ShooterSubsystem Variables
@@ -25,11 +26,16 @@ public class ShooterSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         if (shooterFlywheelActive) {
-            floppaShooterMotorController.set(ControlMode.PercentOutput, 1);
-            bingusShooterMotorController.set(ControlMode.PercentOutput, 1);
+            floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.shooterFlywheelPower);
+            bingusShooterMotorController.set(ControlMode.PercentOutput, Constants.shooterFlywheelPower);
         }
         if (loadWheelActive) {
             quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.loaderMotorPower);
+        }
+        if (RobotContainer.mainJoystick.getRawButtonPressed(1)) {
+            loadWheelActive = true;
+        } else if (RobotContainer.mainJoystick.getRawButtonReleased(1)) {
+            loadWheelActive = false;
         }
     }
 
