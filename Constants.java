@@ -19,8 +19,8 @@ public final class Constants {
     public static int backRightDriveMotorControllerPort = 7;
 
     public static int floppaShooterMotorControllerPort = 9;
-    public static int bingusShooterMotorControllerPort = 2;
-    public static int quadingleLoadingMotorControllerPort = 6;
+    public static int bingusShooterMotorControllerPort = 3;
+    public static int quadingleLoadingMotorControllerPort = 2;
     
     public static int intakeMotorControllerPort = 8;
 
