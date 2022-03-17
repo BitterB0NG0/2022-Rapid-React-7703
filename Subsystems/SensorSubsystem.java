@@ -63,7 +63,7 @@ public class SensorSubsystem extends SubsystemBase {
             colorString = "Unknown";
         }
 
-        System.out.println(colorString);
+        // System.out.println(colorString);
 
         SmartDashboard.putNumber("Red", Constants.detectedColor.red);
         SmartDashboard.putNumber("Green", Constants.detectedColor.green);

@@ -55,7 +55,7 @@ public class RobotContainer {
     // button 1
     new JoystickButton(mainJoystick, 1)
       .whenPressed(new RunCommand(
-        () -> shooterSubsystem.activateShootingFlyWheels(), shooterSubsystem));
+        () -> shooterSubsystem.activateShootingFlyWheels(.5), shooterSubsystem));
     new JoystickButton(mainJoystick, 1)
       .whenPressed(new RunCommand(
         () -> shooterSubsystem.deactivateShootingFlyWheels(), shooterSubsystem));
