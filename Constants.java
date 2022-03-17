@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
+
 // "Constants" holds robot-wide numerical or boolean constants
 public final class Constants {
     /* The CAN IDs are set up from first device to last, even if the said last device is not powered up, or even used by the code (I'm looking at you PDP).
@@ -30,4 +33,7 @@ public final class Constants {
     // logic, and yes I realize this is commiting blasphamy, but there is no other way to do it with how a Command base works
     public static double[] accel;
     public static double distance;
+    public static Color detectedColor;
+
+    public static I2C.Port i2cPort = I2C.Port.kOnboard;
 }

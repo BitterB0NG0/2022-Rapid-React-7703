@@ -35,6 +35,10 @@ public class IntakeSubsystem extends SubsystemBase {
         if (RobotContainer.mainJoystick.getRawButtonPressed(5)) {
             decreaseIntakeSpeed();
         }
+
+        if (RobotContainer.mainJoystick.getRawButtonPressed(2)) {
+            intakeMotorSpeed = intakeMotorSpeed * -1;
+        }
     }
 
     // "simulationPeriodic()" is called periodically, once per scheduler run, during simulation mode
