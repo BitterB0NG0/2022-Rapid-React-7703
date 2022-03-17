@@ -6,6 +6,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase { 
+    // Stating ShooterSubsystem Variables
+    public double distanceToTarget;
+
     // Stating and Defining ShooterSubsystem Objects
     public static WPI_VictorSPX floppaShooterMotorController = new WPI_VictorSPX(Constants.floppaShooterMotorControllerPort);
     public static WPI_VictorSPX bingusShooterMotorController = new WPI_VictorSPX(Constants.bingusShooterMotorControllerPort);
@@ -25,8 +28,9 @@ public class ShooterSubsystem extends SubsystemBase {
     }
 
     // "calculateFlyWheelSpeeds()" calculates the velocity requirements for hitting the target
-    public void calculateFlyWheelSpeeds() {
-
+    public double calculateFlyWheelSpeeds(double distanceToTarget) {
+        double flyWheelSpeeds = distanceToTarget * Constants.gravitationalFieldStrengthOnBall / (Constants.terminalVelocityOfBall * Math.cos(Constants.angleOfShooter));
+        return flyWheelSpeeds;
     }
 
     // "loadShooter()" commands the loading wheel to rotate slightly and load the shooting mechanism

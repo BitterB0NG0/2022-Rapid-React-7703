@@ -59,4 +59,8 @@ public class DriveBaseSubsystem extends SubsystemBase {
     public static void movePercent(double xSpeed, double zRotation, boolean allowTurnInPlace) {
         differentialDrive.curvatureDrive(xSpeed, zRotation, allowTurnInPlace);
     }
+
+    public void haultMovement() {
+        differentialDrive.stopMotor();
+    }
 }
