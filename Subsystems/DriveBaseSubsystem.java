@@ -30,8 +30,16 @@ public class DriveBaseSubsystem extends SubsystemBase {
     // "periodic()" is called periodically, once per scheduler run
     @Override
     public void periodic() {
-        if (moveByPosition = true) {
+        if (RobotContainer.mainJoystick.getRawButtonPressed(10)) {
+            moveByPosition = true;
+        } 
+        if (RobotContainer.mainJoystick.getRawButtonPressed(11)) {
+            moveByPosition = false;
+        }
+
+        if (moveByPosition == true) {
             moveDistance(50, Constants.distance);
+            System.out.print("Move by Pos");
         } else {
             movePercent(RobotContainer.mainJoystick.getRawAxis(0),RobotContainer.mainJoystick.getRawAxis(1), true);
         }
@@ -45,13 +53,16 @@ public class DriveBaseSubsystem extends SubsystemBase {
     // "moveDistance()" commands the DriveBaseSubsystem to move a spesific distance in centimeters
     public void moveDistance(double finalPosition, double currentPosition) {
         double power = 0.0004 * (finalPosition - currentPosition) * (finalPosition - currentPosition);
+        System.out.print(power);
         if (power > 1) {
             power = 1;            
         }
         if (finalPosition > currentPosition) {
-            leftDriveMotorControllerGroup.set(power);
+            frontLeftDriveMotorController.set(power);
+            backLeftDriveMotorController.set(power);
         } else {
-            leftDriveMotorControllerGroup.set(power);
+            frontRightDriveMotorController.set(power);
+            backRightDriveMotorController.set(power);
         }
     }
 

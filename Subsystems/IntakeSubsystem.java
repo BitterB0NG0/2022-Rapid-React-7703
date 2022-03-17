@@ -35,6 +35,10 @@ public class IntakeSubsystem extends SubsystemBase {
         if (RobotContainer.mainJoystick.getRawButtonPressed(5)) {
             decreaseIntakeSpeed();
         }
+
+        if (RobotContainer.mainJoystick.getRawButtonPressed(2)) {
+            intakeMotorSpeed = intakeMotorSpeed * -1;
+        }
     }
 
     // "simulationPeriodic()" is called periodically, once per scheduler run, during simulation mode
@@ -55,7 +59,6 @@ public class IntakeSubsystem extends SubsystemBase {
     // "increaseIntakeSpeed()" commands the IntakeSubsystem to increase in rotation speed
     public void increaseIntakeSpeed() {
         // intakeMotorSpeed =  Math.round(intakeMotorSpeed * 100) / 100;
-        System.out.println(intakeMotorSpeed);
         if (intakeMotorSpeed + .1 < 1) {
             intakeMotorSpeed += 0.1;
         }
@@ -64,7 +67,6 @@ public class IntakeSubsystem extends SubsystemBase {
     // "decreaseIntakeSpeed()" commands theIntakeSubsystem to decrease in rotation speed
     public void decreaseIntakeSpeed() {
         // intakeMotorSpeed =  Math.round(intakeMotorSpeed * 100) / 100;
-        System.out.println(intakeMotorSpeed);
         if (intakeMotorSpeed - .1 > -1) {
             intakeMotorSpeed -= 0.1;
         }

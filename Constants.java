@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.util.Color;
+
 // "Constants" holds robot-wide numerical or boolean constants
 public final class Constants {
     /* The CAN IDs are set up from first device to last, even if the said last device is not powered up, or even used by the code (I'm looking at you PDP).
@@ -40,4 +43,7 @@ public final class Constants {
     public static double terminalVelocityOfBall = Math.sqrt(2 * massOfBall * gravitationalFieldStrengthOnBall / (densityOfAir * dragCoefficentOfBall * crossSectionalAreaOfBall)); // Terminal Velocity in Meters per Second
     public static double summarizeDragCoefficient = 0.5 * dragCoefficentOfBall * densityOfAir * crossSectionalAreaOfBall;
     public static double angleOfShooter = 3.14159263538979323/12; // Angle of Shooter in Radians
+    public static Color detectedColor;
+
+    public static I2C.Port i2cPort = I2C.Port.kOnboard;
 }

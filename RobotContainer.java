@@ -49,16 +49,6 @@ public class RobotContainer {
       .whenReleased(new RunCommand(
         () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
       );
-    // Joystick Button 4
-    new JoystickButton(mainJoystick, 4)
-      .whenPressed(new RunCommand(
-        () -> intakeSubsystem.increaseIntakeSpeed(), intakeSubsystem)
-      );
-    // Jyystick Button 5
-    new JoystickButton(mainJoystick, 5)
-      .whenPressed(new RunCommand(
-        () -> intakeSubsystem.deactivateIntake(), intakeSubsystem)
-      );
 
 
     // Shooter Subsystem
