@@ -54,12 +54,12 @@ public class RobotContainer {
       );
 
     // Shooter Subsystem
-    new JoystickButton(mainJoystick, 1)
-      .whenPressed(new RunCommand(
-        () -> shooterSubsystem.activateShooter(), shooterSubsystem));
-    new JoystickButton(mainJoystick, 1)
-      .whenPressed(new RunCommand(
-        () -> shooterSubsystem.deactivateShooter(), shooterSubsystem));
+    // new JoystickButton(mainJoystick, 1)
+    //   .whenPressed(new RunCommand(
+    //     () -> shooterSubsystem.activateShooter(), shooterSubsystem));
+    // new JoystickButton(mainJoystick, 1)
+    //   .whenPressed(new RunCommand(
+    //     () -> shooterSubsystem.deactivateShooter(), shooterSubsystem));
     // new JoystickButton(mainJoystick, 9
     //   .whenPressed(new RunCommand(
     //     () -> shooterSubsystem.loadShooter(), shooterSubsystem));

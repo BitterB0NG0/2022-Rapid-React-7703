@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class ShooterSubsystem extends SubsystemBase { 
@@ -16,7 +17,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public static WPI_VictorSPX bingusShooterMotorController = new WPI_VictorSPX(Constants.bingusShooterMotorControllerPort);
     public static WPI_VictorSPX quadingleLoadingMotorController = new WPI_VictorSPX(Constants.quadingleLoadingMotorControllerPort);
 
-    public static boolean shooterFlywheelActive;
+    public static boolean shooterFlywheelActive = true;
     public static boolean loadWheelActive;
     public static boolean manualPowerSetting = true;
 
@@ -31,8 +32,14 @@ public class ShooterSubsystem extends SubsystemBase {
             floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.floppaPower);
             bingusShooterMotorController.set(ControlMode.PercentOutput, Constants.bingusPower);
         }
-        if (loadWheelActive) {
+        if (loadWheelActive == true) {
             quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.loaderMotorPower);
+        }
+
+        if (RobotContainer.mainJoystick.getRawButtonReleased(1)) {
+            loadWheelActive = true;
+        } else {
+            loadWheelActive = false;
         }
 
         if (RobotContainer.mainJoystick.getRawButtonPressed(9)) {

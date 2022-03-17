@@ -28,7 +28,7 @@ public class IntakeSubsystem extends SubsystemBase {
     public void periodic() {
         counter++;
 
-        if (counter % 5 == 0) {
+        if (counter % 50 == 0) {
             if (moveForward == true) {
                 moveForward = false;
             } else {
