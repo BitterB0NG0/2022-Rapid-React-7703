@@ -28,7 +28,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public void periodic() {
         // Setting shooting flywheel power/speed
         if (shooterFlywheelActive) {
-            setFlyWheelSpeeds((RobotContainer.mainJoystick.getRawAxis(2) - 1) / 2);
+            setFlyWheelSpeeds((RobotContainer.mainJoystick.getRawAxis(2) - 1) / 2, Constants.distance);
             floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.floppaPower);
             bingusShooterMotorController.set(ControlMode.PercentOutput, -Constants.bingusPower);
         }
@@ -65,13 +65,15 @@ public class ShooterSubsystem extends SubsystemBase {
     public void simulationPeriodic() {}
 
     // "setFlyWheelSpeeds()" sets the power of the shootingFlyWheelsSpeeds
-    public void setFlyWheelSpeeds(double powerSetting) {
+    public void setFlyWheelSpeeds(double powerSetting, double distanceToTarget) {
         if (manualPowerSetting = true) {
             Constants.floppaPower = powerSetting;
             Constants.bingusPower = powerSetting;
         } else {
-            //Constants.floppaPower = ;
-            //Constants.bingusPower =;
+            double maximumVelocity = (Math.sqrt(2 * Constants.gravitationalFieldStrenth * Constants.maximumHeight)) / Math.cos(Constants.shooterAngle);
+            double requiredVelocity = (Math.sqrt((2 * distanceToTarget) / (Constants.gravitationalFieldStrenth * Math.tan(Constants.shooterAngle)))) / Math.cos(Constants.shooterAngle);
+            Constants.floppaPower = requiredVelocity / maximumVelocity;
+            Constants.bingusPower = requiredVelocity / maximumVelocity;
         }
     }
 

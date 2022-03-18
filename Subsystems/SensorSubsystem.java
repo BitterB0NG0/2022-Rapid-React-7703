@@ -19,8 +19,8 @@ public class SensorSubsystem extends SubsystemBase {
 
     public static AnalogInput ultrasonic = new AnalogInput(0);
     public static Accelerometer accelerometer = new BuiltInAccelerometer();
-    private static ColorSensorV3 m_colorSensor = new ColorSensorV3(Constants.i2cPort);
-    private final ColorMatch m_colorMatcher = new ColorMatch();
+    private static ColorSensorV3 colorSensor = new ColorSensorV3(Constants.i2cPort);
+    private final ColorMatch colorMatcher = new ColorMatch();
 
     // Filitering Input Accelration
     LinearFilter xAccelFilter = LinearFilter.movingAverage(10);
@@ -28,7 +28,7 @@ public class SensorSubsystem extends SubsystemBase {
     double prevXAccel = 0;
     double prevYAccel = 0;
     
-    // Camera
+    // Defining a Camera Variables
     Thread m_visionThread;
 
     private final Color kBlueTarget = new Color(0.143, 0.427, 0.429);
@@ -38,10 +38,10 @@ public class SensorSubsystem extends SubsystemBase {
 
     // "SensorSubsystem()" creates a SensorSubsystem
     public SensorSubsystem() {
-        m_colorMatcher.addColorMatch(kBlueTarget);
-        m_colorMatcher.addColorMatch(kGreenTarget);
-        m_colorMatcher.addColorMatch(kRedTarget);
-        m_colorMatcher.addColorMatch(kYellowTarget);   
+        colorMatcher.addColorMatch(kBlueTarget);
+        colorMatcher.addColorMatch(kGreenTarget);
+        colorMatcher.addColorMatch(kRedTarget);
+        colorMatcher.addColorMatch(kYellowTarget);   
     }
 
     // "colorSensorPeriodic()" is called periodically, once per scheduler run
@@ -60,9 +60,9 @@ public class SensorSubsystem extends SubsystemBase {
     // "colorSensorPeriodic()" runs periodically, calling the functions of the color sensor
     public void colorSensorPeriodic() {
         // Defining & Declaring Variables
-        Constants.detectedColor = m_colorSensor.getColor();
+        Constants.detectedColor = colorSensor.getColor();
         String colorString;
-        ColorMatchResult match = m_colorMatcher.matchClosestColor(Constants.detectedColor);
+        ColorMatchResult match = colorMatcher.matchClosestColor(Constants.detectedColor);
   
         // Color Sensor Output
         if (match.color == kBlueTarget) {
