@@ -36,7 +36,11 @@ public final class Constants {
     public static double distance;
 
     // Defining ShooterSystemVariables
-    public static double quadinglePower = .8;
+    public static double quadinglePower = 1;
     public static double floppaPower;
     public static double bingusPower;
+
+    public static double shooterAngle = 1.309; // Angle in Radians (75 Degrees)
+    public static double gravitationalFieldStrenth = 9.80665; // Gravitational Field Stregnth in Meters per Second per Second
+    public static double maximumHeight = 8; // Maximym Height in Meters
 }

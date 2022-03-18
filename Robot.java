@@ -4,9 +4,12 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.DriveBaseSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
 
@@ -15,6 +18,7 @@ public class Robot extends TimedRobot {
   // Decarling Instnaces of Commands & RobotContainer
   private Command autonomousCommand;
   private RobotContainer robotContainer;
+  int autonomousCounter = 0;
 
   // "robotInit()" runs during robot intilization
   @Override
@@ -46,7 +50,15 @@ public class Robot extends TimedRobot {
   // "autonomousPeriodic()" runs periodically during autonomous mode
   @Override
   public void autonomousPeriodic() {
-    IntakeSubsystem.autonomousPeriodic();
+    autonomousCounter++;
+    // IntakeSubsystem.autonomousPeriodic();
+    
+    if (autonomousCounter < 20) {
+      DriveBaseSubsystem.backLeftDriveMotorController.set(ControlMode.PercentOutput, .5);
+      DriveBaseSubsystem.frontLeftDriveMotorController.set(ControlMode.PercentOutput, .5);
+      DriveBaseSubsystem.backRightDriveMotorController.set(ControlMode.PercentOutput, -.5);
+      DriveBaseSubsystem.frontRightDriveMotorController.set(ControlMode.PercentOutput, -.5);
+    }
   }
 
   // "teleopInit()" runs during teleoperation mode intilization

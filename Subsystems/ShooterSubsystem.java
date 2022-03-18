@@ -27,11 +27,12 @@ public class ShooterSubsystem extends SubsystemBase {
     // "periodic()" is called periodically, once per scheduler run
     @Override
     public void periodic() {
+        distanceToTarget = Constants.distance;
         // Setting shooting flywheel power/speed
         if (shooterFlywheelActive) {
             setFlyWheelSpeeds((RobotContainer.mainJoystick.getRawAxis(2) - 1) / 2);
-            floppaShooterMotorController.set(ControlMode.PercentOutput, -Constants.floppaPower);
-            bingusShooterMotorController.set(ControlMode.PercentOutput, Constants.bingusPower);
+            floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.floppaPower);
+            bingusShooterMotorController.set(ControlMode.PercentOutput, -Constants.bingusPower);
         } else {
             setFlyWheelSpeeds(0);
         }
@@ -39,9 +40,9 @@ public class ShooterSubsystem extends SubsystemBase {
         // Setting loading flywheel power/speed
         if (loadWheelActive == true) {
             if (load) {
-                quadingleLoadingMotorController.set(ControlMode.PercentOutput, -Constants.quadinglePower);
-            } else {
                 quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.quadinglePower);
+            } else {
+                quadingleLoadingMotorController.set(ControlMode.PercentOutput, -Constants.quadinglePower);
             }
         } else {
             quadingleLoadingMotorController.set(ControlMode.PercentOutput, 0);
@@ -85,8 +86,10 @@ public class ShooterSubsystem extends SubsystemBase {
             Constants.floppaPower = powerSetting;
             Constants.bingusPower = powerSetting;
         } else {
-            //Constants.floppaPower = ;
-            //Constants.bingusPower =;
+            double maximumVelocity = (Math.sqrt(2 * Constants.gravitationalFieldStrenth * Constants.maximumHeight)) / Math.cos(Constants.shooterAngle);
+            double requiredVelocity = (Math.sqrt((2 * distanceToTarget) / (Constants.gravitationalFieldStrenth * Math.tan(Constants.shooterAngle)))) / Math.cos(Constants.shooterAngle);
+            Constants.floppaPower = requiredVelocity / maximumVelocity;
+            Constants.bingusPower = requiredVelocity / maximumVelocity;
         }
     }
 

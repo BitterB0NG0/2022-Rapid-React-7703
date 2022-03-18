@@ -28,6 +28,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Calling "configureButtonBindings()" method
     configureButtonBindings();
+    sensorSubsystem.cameraInit();
   }
 
   // "configureButtonBindings()" defines button-command mapping
