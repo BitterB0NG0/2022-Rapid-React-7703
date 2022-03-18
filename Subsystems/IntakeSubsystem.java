@@ -93,9 +93,9 @@ public class IntakeSubsystem extends SubsystemBase {
         }
         if (deployingIntake == true) {
             if (moveForward) {
-                RobotContainer.driveBaseSubsystem.movePercent(1, 0, false);
-            } else {
                 RobotContainer.driveBaseSubsystem.movePercent(-1, 0, false);
+            } else {
+                RobotContainer.driveBaseSubsystem.movePercent(1, 0, false);
             }
         }
         if (counter == startedIntake + Constants.intakeDeployTime) {

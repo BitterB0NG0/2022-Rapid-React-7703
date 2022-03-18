@@ -59,7 +59,11 @@ public class DriveBaseSubsystem extends SubsystemBase {
         if (finalPosition > currentPosition) {
             frontLeftDriveMotorController.set(power);
             backLeftDriveMotorController.set(power);
+            frontRightDriveMotorController.set(-power);
+            backRightDriveMotorController.set(-power);
         } else {
+            frontLeftDriveMotorController.set(-power);
+            backLeftDriveMotorController.set(-power);
             frontRightDriveMotorController.set(power);
             backRightDriveMotorController.set(power);
         }
@@ -67,7 +71,7 @@ public class DriveBaseSubsystem extends SubsystemBase {
 
     // "drivePereentCurvature()" commands the DriveBaseSusbsystem to move under spesific power in percentages (-1,1)
     public void movePercent(double xSpeed, double zRotation, boolean allowTurnInPlace) {
-        differentialDrive.curvatureDrive(xSpeed, zRotation, allowTurnInPlace);
+        differentialDrive.curvatureDrive(xSpeed, -zRotation, allowTurnInPlace);
     }
 
     public void haultMovement() {

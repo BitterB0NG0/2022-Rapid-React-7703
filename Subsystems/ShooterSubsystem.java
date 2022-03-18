@@ -19,6 +19,7 @@ public class ShooterSubsystem extends SubsystemBase {
     public static boolean shooterFlywheelActive = true;
     public static boolean loadWheelActive;
     public static boolean manualPowerSetting = true;
+    public static boolean load = true;
 
     // "ShooterSubsystem()" creates a ShooterSubsystem
     public ShooterSubsystem() {}
@@ -29,13 +30,19 @@ public class ShooterSubsystem extends SubsystemBase {
         // Setting shooting flywheel power/speed
         if (shooterFlywheelActive) {
             setFlyWheelSpeeds((RobotContainer.mainJoystick.getRawAxis(2) - 1) / 2);
-            floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.floppaPower);
-            bingusShooterMotorController.set(ControlMode.PercentOutput, -Constants.bingusPower);
+            floppaShooterMotorController.set(ControlMode.PercentOutput, -Constants.floppaPower);
+            bingusShooterMotorController.set(ControlMode.PercentOutput, Constants.bingusPower);
+        } else {
+            setFlyWheelSpeeds(0);
         }
 
         // Setting loading flywheel power/speed
         if (loadWheelActive == true) {
-            quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.quadinglePower);
+            if (load) {
+                quadingleLoadingMotorController.set(ControlMode.PercentOutput, -Constants.quadinglePower);
+            } else {
+                quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.quadinglePower);
+            }
         } else {
             quadingleLoadingMotorController.set(ControlMode.PercentOutput, 0);
         }
@@ -56,6 +63,14 @@ public class ShooterSubsystem extends SubsystemBase {
                 shooterFlywheelActive = false;
             } else {
                 shooterFlywheelActive = true;
+            }
+        }
+
+        if (RobotContainer.mainJoystick.getRawButtonPressed(8)) {
+            if (load == true) {
+                load = false;
+            } else {
+                load = true;
             }
         }
     }
