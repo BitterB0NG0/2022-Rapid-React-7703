@@ -47,7 +47,10 @@ public class SensorSubsystem extends SubsystemBase {
     // "colorSensorPeriodic()" is called periodically, once per scheduler run
     @Override
     public void periodic() {
+        // Accelerometer and Distance Sensor Outputs
         Constants.distance = distanceSensorValuePeriodic();
+        Constants.accel = accelerometerPeriodic();
+        System.out.println(Constants.distance);
     }
 
     // "simulationPeriodic()" is called periodically, once per scheduler run, during simulation mode
@@ -84,12 +87,7 @@ public class SensorSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Blue", Constants.detectedColor.blue);
         SmartDashboard.putNumber("Confidence", match.confidence);
         SmartDashboard.putString("Detected Color", colorString);
-        //System.out.println(colorString);
-  
-        // Accelerometer and Distance Sensor Outputs
-        Constants.accel = accelerometerPeriodic();
-        Constants.distance = distanceSensorValuePeriodic();
-        // System.out.println(Constants.distance);
+        //System.out.println(colorString);;
     }
 
     // "accelerometerPeriodic()" runs periodically, calling the functions of the accelerometer

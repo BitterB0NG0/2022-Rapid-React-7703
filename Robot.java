@@ -45,20 +45,23 @@ public class Robot extends TimedRobot {
   // "autonomousInit()" runs during autonomous mode initilization
   @Override
   public void autonomousInit() {
+    DriveBaseSubsystem.movePercent(-0.6, 0, true);
   }
 
   // "autonomousPeriodic()" runs periodically during autonomous mode
   @Override
   public void autonomousPeriodic() {
-    autonomousCounter++;
     // IntakeSubsystem.autonomousPeriodic();
-    
-    if (autonomousCounter < 20) {
-      DriveBaseSubsystem.backLeftDriveMotorController.set(ControlMode.PercentOutput, .5);
-      DriveBaseSubsystem.frontLeftDriveMotorController.set(ControlMode.PercentOutput, .5);
-      DriveBaseSubsystem.backRightDriveMotorController.set(ControlMode.PercentOutput, -.5);
-      DriveBaseSubsystem.frontRightDriveMotorController.set(ControlMode.PercentOutput, -.5);
-    }
+
+    //autonomousCounter++;
+  
+    // if (autonomousCounter < 20) {
+    //  DriveBaseSubsystem.moveDistance(-5, Constants.distance);
+    //  DriveBaseSubsystem.backLeftDriveMotorController.set(ControlMode.PercentOutput, .5);
+    //  DriveBaseSubsystem.frontLeftDriveMotorController.set(ControlMode.PercentOutput, .5);
+    //  DriveBaseSubsystem.backRightDriveMotorController.set(ControlMode.PercentOutput, -.5);
+    //  DriveBaseSubsystem.frontRightDriveMotorController.set(ControlMode.PercentOutput, -.5);
+    // }
   }
 
   // "teleopInit()" runs during teleoperation mode intilization

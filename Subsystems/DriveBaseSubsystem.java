@@ -50,7 +50,7 @@ public class DriveBaseSubsystem extends SubsystemBase {
     }
 
     // "moveDistance()" commands the DriveBaseSubsystem to move a spesific distance in centimeters
-    public void moveDistance(double finalPosition, double currentPosition) {
+    public static void moveDistance(double finalPosition, double currentPosition) {
         double power = 0.0004 * (finalPosition - currentPosition) * (finalPosition - currentPosition);
         System.out.print(power);
         if (power > 1) {
@@ -69,8 +69,8 @@ public class DriveBaseSubsystem extends SubsystemBase {
         }
     }
 
-    // "drivePereentCurvature()" commands the DriveBaseSusbsystem to move under spesific power in percentages (-1,1)
-    public void movePercent(double xSpeed, double zRotation, boolean allowTurnInPlace) {
+    // "drivePercentCurvature()" commands the DriveBaseSusbsystem to move under spesific power in percentages (-1,1)
+    public static void movePercent(double xSpeed, double zRotation, boolean allowTurnInPlace) {
         differentialDrive.curvatureDrive(xSpeed, -zRotation, allowTurnInPlace);
     }
 
