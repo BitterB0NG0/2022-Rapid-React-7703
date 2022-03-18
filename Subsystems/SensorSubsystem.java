@@ -44,14 +44,27 @@ public class SensorSubsystem extends SubsystemBase {
         m_colorMatcher.addColorMatch(kYellowTarget);   
     }
 
-    // "periodic()" is called periodically, once per scheduler run
+    // "colorSensorPeriodic()" is called periodically, once per scheduler run
     @Override
-    public void periodic() {
+    public void periodic() {}
+
+    // "simulationPeriodic()" is called periodically, once per scheduler run, during simulation mode
+    @Override
+    public void simulationPeriodic() {}
+
+    // "cameraInit()" initilizes the
+    public void cameraInit() {
+        CameraServer.startAutomaticCapture();
+    }
+
+    // "colorSensorPeriodic()" runs periodically, calling the functions of the color sensor
+    public void colorSensorPeriodic() {
         // Defining & Declaring Variables
         Constants.detectedColor = m_colorSensor.getColor();
         String colorString;
         ColorMatchResult match = m_colorMatcher.matchClosestColor(Constants.detectedColor);
-
+  
+        // Color Sensor Output
         if (match.color == kBlueTarget) {
             colorString = "Blue";
         } else if (match.color == kRedTarget) {
@@ -63,55 +76,44 @@ public class SensorSubsystem extends SubsystemBase {
         } else {
             colorString = "Unknown";
         }
-
-
-        // System.out.println(colorString);
-
+  
         SmartDashboard.putNumber("Red", Constants.detectedColor.red);
         SmartDashboard.putNumber("Green", Constants.detectedColor.green);
         SmartDashboard.putNumber("Blue", Constants.detectedColor.blue);
         SmartDashboard.putNumber("Confidence", match.confidence);
         SmartDashboard.putString("Detected Color", colorString);
-
-
-        // This method will be called once per scheduler run
+        //System.out.println(colorString);
+  
+        // Accelerometer and Distance Sensor Outputs
         Constants.accel = accelerometerPeriodic();
         Constants.distance = distanceSensorValuePeriodic();
-
         // System.out.println(Constants.distance);
-
-
     }
 
-    @Override
-    public void simulationPeriodic() {
-        // This method will be called once per scheduler run during simulation
-    }
-
-    public void cameraInit() {
-        CameraServer.startAutomaticCapture();
-    }
-
+    // "accelerometerPeriodic()" runs periodically, calling the functions of the accelerometer
     public double[] accelerometerPeriodic() {
-        // Gets the current accelerations in the X and Y directions
+        // Calculates the current acceleration in the X and Y directions
         double xAccel = accelerometer.getX();
         double yAccel = accelerometer.getY();
 
         // Calculates the jerk in the X and Y directions
-        // Divides by .02 because default loop timing is 20ms
         double xJerk = (xAccel - prevXAccel)/.02;
         double yJerk = (yAccel - prevYAccel)/.02;
 
+        // Updating the previous acceleration in the X and Y directions
         prevXAccel = xAccel;
         prevYAccel = yAccel;  
 
+        // Calculstes the current filtered acceleration in the X and Y directions
         double filteredXAccel = xAccelFilter.calculate(accelerometer.getX());
         double filteredYAccel = yAccelFilter.calculate(accelerometer.getY());
 
+        // Returning acceleration values in the X and Y directions
         double[] arr = {filteredXAccel, filteredYAccel};
         return arr;
     }
 
+    // "distanceSensorValuePeriodic() runs periodically, calling the functions of the distance sensor"
     public double distanceSensorValuePeriodic() {
         double rawValue = ultrasonic.getValue();
         double voltage_scale_factor = 5/RobotController.getVoltage5V();
