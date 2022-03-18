@@ -40,7 +40,7 @@ public final class Constants {
     // Defining ShooterSystemVariables
     public static Color detectedColor;
 
-    public static double quadinglePower = .6;
+    public static double quadinglePower = .3;
     public static double floppaPower;
     public static double bingusPower;
 

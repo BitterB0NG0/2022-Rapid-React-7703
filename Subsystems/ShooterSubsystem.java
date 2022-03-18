@@ -36,6 +36,8 @@ public class ShooterSubsystem extends SubsystemBase {
         }
         if (loadWheelActive == true) {
             quadingleLoadingMotorController.set(ControlMode.PercentOutput, Constants.quadinglePower);
+        } else {
+            quadingleLoadingMotorController.set(ControlMode.PercentOutput, 0);
         }
 
         if (RobotContainer.mainJoystick.getRawButtonPressed(1)) {
