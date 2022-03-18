@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.IntakeSubsystem;
 
 
 // "Robot" configured and called autonmatically according to mode
@@ -40,18 +41,13 @@ public class Robot extends TimedRobot {
   // "autonomousInit()" runs during autonomous mode initilization
   @Override
   public void autonomousInit() {
-    // Runing the RobotContainer-Selected Autonomous Command
-    // m_autonomousCommand = robotContainer.getAutonomousCommand();
-
-    // Scheduleing the Autonomous Command (Example)
-    // if (m_autonomousCommand != null) {
-    //   m_autonomousCommand.schedule();
-    // }
   }
 
   // "autonomousPeriodic()" runs periodically during autonomous mode
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    IntakeSubsystem.autonomousPeriodic();
+  }
 
   // "teleopInit()" runs during teleoperation mode intilization
   @Override

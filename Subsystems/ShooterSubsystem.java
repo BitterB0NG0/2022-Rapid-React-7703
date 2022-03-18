@@ -50,10 +50,10 @@ public class ShooterSubsystem extends SubsystemBase {
 
         // Switching shooting modes
         if (RobotContainer.mainJoystick.getRawButtonPressed(9)) {
-            if (manualPowerSetting == false) {
-                manualPowerSetting = true;
+            if (shooterFlywheelActive) {
+                shooterFlywheelActive = false;
             } else {
-                manualPowerSetting = false;
+                shooterFlywheelActive = true;
             }
         }
     }
