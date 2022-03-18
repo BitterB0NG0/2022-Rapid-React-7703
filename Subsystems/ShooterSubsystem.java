@@ -45,11 +45,18 @@ public class ShooterSubsystem extends SubsystemBase {
             loadWheelActive = false;
         }
 
+        if (RobotContainer.mainJoystick.getRawButtonPressed(6)) {
+            manualPowerSetting = true;
+        }
+        if (RobotContainer.mainJoystick.getRawButtonPressed(7)) {
+            manualPowerSetting = false;
+        }
+
         if (RobotContainer.mainJoystick.getRawButtonPressed(9)) {
-            if (manualPowerSetting == false) {
-                manualPowerSetting = true;
+            if (shooterFlywheelActive) {
+                shooterFlywheelActive = false;
             } else {
-                manualPowerSetting = false;
+                shooterFlywheelActive = true;
             }
         }
     }

@@ -64,6 +64,7 @@ public class SensorSubsystem extends SubsystemBase {
             colorString = "Unknown";
         }
 
+
         // System.out.println(colorString);
 
         SmartDashboard.putNumber("Red", Constants.detectedColor.red);
@@ -71,6 +72,8 @@ public class SensorSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Blue", Constants.detectedColor.blue);
         SmartDashboard.putNumber("Confidence", match.confidence);
         SmartDashboard.putString("Detected Color", colorString);
+
+
         // This method will be called once per scheduler run
         Constants.accel = accelerometerPeriodic();
         Constants.distance = distanceSensorValuePeriodic();
