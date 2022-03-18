@@ -5,7 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.DriveBaseSubsystem;
@@ -24,17 +23,11 @@ public class RobotContainer {
   // Declaring Instances of Input-Output Devices
   public final static Joystick mainJoystick = new Joystick(Constants.mainjoystickPort);
   public final JoystickButton trigger = new JoystickButton(mainJoystick, 1);
-  public final XboxController xboxController = new XboxController(0);
 
   // "RobotContainer" holds all subsystems, input-output, and configurations
   public RobotContainer() {
-    // Call "configureButtonBindings()" method
+    // Calling "configureButtonBindings()" method
     configureButtonBindings();
-
-    // // Configure Default Commands
-    // driveBaseSubsystem.setDefaultCommand(new RunCommand(
-    //   () -> DriveBaseSubsystem.movePercent(mainJoystick.getRawAxis(0), mainJoystick.getRawAxis(1), true), driveBaseSubsystem) 
-    //  ); // A split-stick curvature drive command, with forward/backward controlled by the left hand, and turning controlled by the right.
   }
 
   // "configureButtonBindings()" defines button-command mapping
@@ -52,23 +45,5 @@ public class RobotContainer {
       .whenReleased(new RunCommand(
         () -> intakeSubsystem.deployIntake(), intakeSubsystem)
       );
-
-    // Shooter Subsystem
-    // new JoystickButton(mainJoystick, 1)
-    //   .whenPressed(new RunCommand(
-    //     () -> shooterSubsystem.activateShooter(), shooterSubsystem));
-    // new JoystickButton(mainJoystick, 1)
-    //   .whenPressed(new RunCommand(
-    //     () -> shooterSubsystem.deactivateShooter(), shooterSubsystem));
-    // new JoystickButton(mainJoystick, 9
-    //   .whenPressed(new RunCommand(
-    //     () -> shooterSubsystem.loadShooter(), shooterSubsystem));
-    
   }
-
-  // "getAuthonomousCommand()" passes the autonomous command to the main "Robot.java" class
-  // public Command getAutonomousCommand() {
-  //   // An ExampleCommand will run in autonomous
-  //   return m_autoCommand;
-  // }
 }

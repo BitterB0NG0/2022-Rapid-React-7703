@@ -1,7 +1,6 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -25,22 +24,25 @@ public class IntakeSubsystem extends SubsystemBase {
 
     // "periodic()" is called periodically, once per scheduler run
     @Override
-    public void periodic() {
-        
+    public void periodic() {        
+        // Setting intake power/speed
         if (intakeOn == true) {
             intakeMotorController.set(ControlMode.PercentOutput, intakeMotorSpeed);
         } else {
             intakeMotorController.set(ControlMode.PercentOutput, 0);
         }
 
+        // Increasing intake power/speed
         if (RobotContainer.mainJoystick.getRawButtonPressed(4)) {
             increaseIntakeSpeed();
         }
 
+        // Decreasing intake power/speed
         if (RobotContainer.mainJoystick.getRawButtonPressed(5)) {
             decreaseIntakeSpeed();
         }
 
+        // Reversing intake direction
         if (RobotContainer.mainJoystick.getRawButtonPressed(2)) {
             intakeMotorSpeed = intakeMotorSpeed * -1;
         }
@@ -77,7 +79,9 @@ public class IntakeSubsystem extends SubsystemBase {
         }
     }
 
+    // "autonomousPeriodic()" runs periodically during autonomous mode
     public static void autonomousPeriodic() {
+        // Deploying Intake Subsystem
         counter++;
 
         if (counter % 50 == 0) {
@@ -87,7 +91,6 @@ public class IntakeSubsystem extends SubsystemBase {
                 moveForward = true;
             }
         }
-         
         if (deployingIntake == true) {
             if (moveForward) {
                 RobotContainer.driveBaseSubsystem.movePercent(1, 0, false);
@@ -95,7 +98,6 @@ public class IntakeSubsystem extends SubsystemBase {
                 RobotContainer.driveBaseSubsystem.movePercent(-1, 0, false);
             }
         }
-
         if (counter == startedIntake + Constants.intakeDeployTime) {
             deployingIntake = false;
         }

@@ -12,7 +12,6 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 // "Robot" configured and called autonmatically according to mode
 public class Robot extends TimedRobot {
-  
   // Decarling Instnaces of Commands & RobotContainer
   private Command autonomousCommand;
   private RobotContainer robotContainer;
@@ -20,11 +19,11 @@ public class Robot extends TimedRobot {
   // "robotInit()" runs during robot intilization
   @Override
   public void robotInit() {
-    // autonomous chooser on the dashboard.
+    // Creating a new RobotContainer
     robotContainer = new RobotContainer();
   }
 
-   // "robotPeriodic()" runs periodically, every 20ms, regardless of mode
+  // "robotPeriodic()" runs periodically, every 20ms, regardless of mode
   @Override
   public void robotPeriodic() {
     /* Running the Scheduler, Polling Buttons, Adding/Removing Newly-scheduled/unscheduled Commands, 
@@ -66,7 +65,7 @@ public class Robot extends TimedRobot {
   // "testInit()" runs during test mode initilization
   @Override
   public void testInit() {
-    // Cancelling all Commands
+    // Cancelling all commands
     CommandScheduler.getInstance().cancelAll();
   }
 
