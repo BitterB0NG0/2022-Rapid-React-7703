@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.DriveBaseSubsystem;
@@ -46,5 +47,10 @@ public class RobotContainer {
       .whenReleased(new RunCommand(
         () -> intakeSubsystem.deployIntake(), intakeSubsystem)
       );
+  }
+
+  public Command autonomousActivity() {
+    return new RunCommand(() -> driveBaseSubsystem.differentialDrive.curvatureDrive(-1, 0, false));
+
   }
 }

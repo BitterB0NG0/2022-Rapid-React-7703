@@ -43,25 +43,24 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {}
 
   // "autonomousInit()" runs during autonomous mode initilization
+  /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    DriveBaseSubsystem.movePercent(-0.6, 0, true);
+    autonomousCommand = robotContainer.autonomousActivity();
+
+    // schedule the autonomous command (example)
+    if (autonomousCommand != null) {
+      autonomousCommand.schedule();
+    }
   }
 
-  // "autonomousPeriodic()" runs periodically during autonomous mode
+  /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    // IntakeSubsystem.autonomousPeriodic();
-
-    //autonomousCounter++;
-  
-    // if (autonomousCounter < 20) {
-    //  DriveBaseSubsystem.moveDistance(-5, Constants.distance);
-    //  DriveBaseSubsystem.backLeftDriveMotorController.set(ControlMode.PercentOutput, .5);
-    //  DriveBaseSubsystem.frontLeftDriveMotorController.set(ControlMode.PercentOutput, .5);
-    //  DriveBaseSubsystem.backRightDriveMotorController.set(ControlMode.PercentOutput, -.5);
-    //  DriveBaseSubsystem.frontRightDriveMotorController.set(ControlMode.PercentOutput, -.5);
-    // }
+    autonomousCounter++;
+    if (autonomousCounter == 20) {
+      autonomousCommand.cancel();
+    }
   }
 
   // "teleopInit()" runs during teleoperation mode intilization
