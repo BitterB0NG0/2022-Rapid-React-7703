@@ -10,9 +10,9 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 public class IO {
-    IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-    ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-    DriveBaseSubsystem driveBaseSubsystem = new DriveBaseSubsystem();
+    static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+    static ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+    static DriveBaseSubsystem driveBaseSubsystem = new DriveBaseSubsystem();
 
     // Dive Base Subsystem
     public static WPI_VictorSPX frontLeftDriveMotorController = new WPI_VictorSPX(4);
@@ -41,7 +41,7 @@ public class IO {
     // Global Variables
     public static double distance = 0;
 
-    public void input() {
+    public static void input() {
         // Bellow is the intake subsystem io, and an example of how to program using the scheduler
         // There are two different ways of giving the run function to the getButtonPressed() function.
         // One is this one liner method
@@ -79,13 +79,13 @@ public class IO {
 
     }
 
-    public void getButtonPressed(Joystick stick, int button, Runnable command) {
+    public static void getButtonPressed(Joystick stick, int button, Runnable command) {
         if (stick.getRawButtonPressed(button)) {
             Scheduler.addMethod(command);
         }
     }
 
-    public void getButtonReleased(Joystick stick, int button, Runnable command) {
+    public static void getButtonReleased(Joystick stick, int button, Runnable command) {
         if (stick.getRawButtonReleased(button)) {
             Scheduler.addMethod(command);
         }
