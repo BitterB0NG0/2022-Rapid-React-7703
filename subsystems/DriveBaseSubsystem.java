@@ -5,18 +5,11 @@ import frc.robot.SubsystemScheduler;
 
 public class DriveBaseSubsystem extends SubsystemScheduler {
     // Stating DriveBaseSubsystem Variables
-    private boolean moveByPosition = false;
+    public static boolean moveByPosition = false;
 
     // this will run ever 20ms durring teleop
     @Override
-    public void periodic() {
-
-        if (moveByPosition == true) {
-            moveDistance(50, IO.distance);
-        } else {
-            movePercent(IO.mainJoystick.getRawAxis(0), IO.mainJoystick.getRawAxis(1), true);
-        }
-    }
+    public void periodic() {}
 
 
     // functions to be called by IO

@@ -23,6 +23,7 @@ public final class Constants {
     public static Color detectedColor;
     public static double[] accel;
     public static double distance;
+    public static String color;
 
     // Defining ShooterSystemVariables
     public static double quadinglePower = 1;

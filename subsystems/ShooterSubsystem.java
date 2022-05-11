@@ -21,11 +21,12 @@ public class ShooterSubsystem extends SubsystemScheduler {
         // Setting shooting flywheel power/speed
         if (shooterFlywheelActive) {
             setFlyWheelSpeeds((IO.mainJoystick.getRawAxis(2) - 1) / 2);
-            IO.floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.floppaPower);
-            IO.bingusShooterMotorController.set(ControlMode.PercentOutput, -Constants.bingusPower);
         } else {
             setFlyWheelSpeeds(0);
         }
+
+        IO.floppaShooterMotorController.set(ControlMode.PercentOutput, Constants.floppaPower);
+        IO.bingusShooterMotorController.set(ControlMode.PercentOutput, -Constants.bingusPower);
 
         // Setting loading flywheel power/speed
         if (loadWheelActive == true) {
@@ -58,7 +59,7 @@ public class ShooterSubsystem extends SubsystemScheduler {
     }
 
     // "activateShooter()" commands the shooter system to shoot
-    public void activateShooter() {
+    public static void activateShooter() {
         loadWheelActive = true;
     }
 
@@ -76,4 +77,5 @@ public class ShooterSubsystem extends SubsystemScheduler {
     public void deactivateShootingFlyWheels() {
         shooterFlywheelActive = false;
     }
+
 }

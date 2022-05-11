@@ -42,6 +42,13 @@ public class IO {
     public static double distance = 0;
 
     public static void input() {
+
+        if (DriveBaseSubsystem.moveByPosition == true) {
+            DriveBaseSubsystem.moveDistance(50, distance);
+        } else {
+            DriveBaseSubsystem.movePercent(mainJoystick.getRawAxis(0), mainJoystick.getRawAxis(1), true);
+        }
+
         // Bellow is the intake subsystem io, and an example of how to program using the scheduler
         // There are two different ways of giving the run function to the getButtonPressed() function.
         // One is this one liner method

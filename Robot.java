@@ -7,7 +7,9 @@ package frc.robot;
 
 import frc.robot.IO;
 import frc.robot.Scheduler;
-
+import frc.robot.subsystems.DriveBaseSubsystem;
+import frc.robot.subsystems.SensorSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -23,7 +25,9 @@ public class Robot extends TimedRobot {
 
 
   @Override
-  public void robotInit() {}
+  public void robotInit() {
+    SensorSubsystem.cameraInit();
+  }
 
   @Override
   public void robotPeriodic() {}
@@ -31,8 +35,23 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {}
 
+  int autoCounter = 0;
+  // function runs every 20ms, use that to count when to run certain code.
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    if (autoCounter < 200) {
+      DriveBaseSubsystem.movePercent(1, 0, false);
+    } else if (autoCounter < 400){
+      DriveBaseSubsystem.movePercent(0, 0, false);
+      ShooterSubsystem.loadWheelActive = true;
+    } else {
+      ShooterSubsystem.loadWheelActive = false;
+    }
+    autoCounter++;
+
+    Scheduler.invokeMethod();
+    // System.out.println(autoCounter);
+  }
 
   @Override
   public void teleopInit() {}

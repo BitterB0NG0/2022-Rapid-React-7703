@@ -15,10 +15,6 @@ public class Scheduler {
     }
 
     public static void invokeMethod() {
-        // if (listOfMethods.size() > 0) {
-        //     listOfMethods.get(listOfMethods.size()-1).run();
-        //     listOfMethods.remove(listOfMethods.size()-1);
-        // }
 
         for(Runnable aMethod : listOfMethods) {
             aMethod.run();
